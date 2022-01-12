@@ -92,6 +92,10 @@ public:
  /// then reverse the second part
  /// then merge the first part and the reversed second part
 
+
+ /// Runtime: 28 ms, faster than 99.23% of C++ online submissions for Reorder List.
+ /// Memory Usage: 17.8 MB, less than 75.25% of C++ online submissions for Reorder List.
+
 class Solution {
 
     ListNode * reverse(ListNode *head){
