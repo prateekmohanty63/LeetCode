@@ -36,6 +36,36 @@ public:
     }
 };
 
+/// Approach-2
+
+class Solution
+{
+public:
+    int wateringPlants(vector<int> &plants, int capacity)
+    {
+
+        int res = 0, curr_water = capacity;
+
+        int n = plants.size();
+
+        for (int i = 0; i < n; i++)
+        {
+
+            if (curr_water >= plants[i])
+            {
+                res++;
+                curr_water -= plants[i];
+                continue;
+            }
+
+            curr_water = capacity - plants[i];
+            res++;
+            res += 2 * i;
+        }
+        return res;
+    }
+};
+
 int main()
 {
 
