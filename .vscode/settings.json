@@ -85,5 +85,10 @@
     "typeindex": "cpp",
     "typeinfo": "cpp",
     "valarray": "cpp"
-  }
+  },
+  "C_Cpp_Runner.msvcBatchPath": "",
+  "C_Cpp_Runner.includeSearch": [
+    "*",
+    "**/*"
+  ]
 }
