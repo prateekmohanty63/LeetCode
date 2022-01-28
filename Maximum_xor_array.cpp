@@ -30,6 +30,9 @@ int findMaximumXOR(vector<int> &nums, int &e, int &f)
     return max;
 }
 
+/// Approach-2
+/// We have to use trie data structure here
+
 int main()
 {
     int n;
