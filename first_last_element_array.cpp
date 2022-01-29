@@ -3,6 +3,65 @@
 #include <algorithm>
 using namespace std;
 
+/// Optimum approach
+/// modified binary search
+
+class Solution
+{
+public:
+    vector<int> searchRange(vector<int> &nums, int target)
+    {
+        vector<int> res;
+        int start = 0, end = nums.size() - 1, index = -1;
+
+        while (start <= end)
+        {
+            int mid = start + (end - start) / 2;
+
+            if (nums[mid] == target)
+            {
+                index = mid;
+                end = mid - 1;
+            }
+
+            else if (target < nums[mid])
+            {
+                end = mid - 1;
+            }
+            else
+            {
+                start = mid + 1;
+            }
+        }
+        res.push_back(index);
+
+        start = 0, end = nums.size() - 1, index = -1;
+
+        while (start <= end)
+        {
+            int mid = start + (end - start) / 2;
+
+            if (nums[mid] == target)
+            {
+                index = mid;
+                start = mid + 1;
+            }
+
+            else if (target < nums[mid])
+            {
+                end = mid - 1;
+            }
+            else
+            {
+                start = mid + 1;
+            }
+        }
+        res.push_back(index);
+
+        return res;
+    }
+};
+
 // Approach-1
 // Runtime: 21 ms, faster than 7.31% of C++ online submissions for Find First and Last Position of Element in Sorted Array.
 // Memory Usage: 14.9 MB, less than 5.11% of C++ online submissions for Find First and Last Position of Element in Sorted Array.
