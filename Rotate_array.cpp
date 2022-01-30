@@ -86,6 +86,53 @@ public:
     }
 };
 
+/// Approach-3
+// Runtime: 57 ms, faster than 17.97% of C++ online submissions for Rotate Array.
+// Memory Usage: 26.3 MB, less than 5.22% of C++ online submissions for Rotate Array.
+
+class Solution
+{
+public:
+    void rotateArray(vector<int> &nums)
+    {
+
+        int n = nums.size();
+
+        nums.push_back(nums[nums.size() - 1]);
+
+        for (int i = 0; i < n - 1; i++)
+        {
+            nums.push_back(nums[i]);
+        }
+        nums.erase(nums.begin(), nums.begin() + n);
+    }
+    void rotate(vector<int> &nums, int k)
+    {
+
+        int n = nums.size();
+
+        if (k <= n)
+        {
+            for (int i = n - k; i < n; i++)
+            {
+                nums.push_back(nums[i]);
+            }
+            for (int i = 0; i < n - k; i++)
+            {
+                nums.push_back(nums[i]);
+            }
+            nums.erase(nums.begin(), nums.begin() + n);
+        }
+        else
+        {
+            for (int i = 0; i < k; i++)
+            {
+                rotateArray(nums);
+            }
+        }
+    }
+};
+
 int main()
 {
 
