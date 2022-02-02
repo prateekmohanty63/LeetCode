@@ -41,6 +41,42 @@ public:
     }
 };
 
+/// 2nd approach
+//Runtime: 20 ms, faster than 87.26% of C++ online submissions for Move Zeroes.
+//Memory Usage: 20.5 MB, less than 5.00% of C++ online submissions for Move Zeroes.
+
+class Solution
+{
+public:
+    void moveZeroes(vector<int> &nums)
+    {
+
+        int n = nums.size();
+        int count = 0;
+
+        for (int i = 0; i < n; i++)
+        {
+            if (nums[i] != 0)
+            {
+                nums.push_back(nums[i]);
+                count++;
+            }
+        }
+
+        for (int i = 0; i < n - count; i++)
+        {
+            nums.push_back(0);
+        }
+        vector<int>::iterator itr;
+        vector<int>::iterator itr1;
+
+        itr = nums.begin();
+        itr1 = nums.begin() + n;
+
+        nums.erase(itr, itr1);
+    }
+};
+
 int main()
 {
 
