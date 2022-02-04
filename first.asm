@@ -1,0 +1,21 @@
+DATA SEGMENT 
+    NUM1 DB 3H, 5H, 7H, 4H, 1H
+DATA ENDS
+CODE SEGMENT
+    ASSUME DS:DATA, CS:CODE
+START:
+    MOV AX, DATA
+    MOV DS, AX
+    MOV CX, 5
+    LEA SI, NUM1
+    MOV AX, 0000H
+LOOP1: ADD AX, [SI]
+       INC SI
+       DEC CX
+       JNZ LOOP1
+       MOV BL, 05H
+       MOV AH, 00H
+       DIV BL
+       HLT
+CODE ENDS
+END START
