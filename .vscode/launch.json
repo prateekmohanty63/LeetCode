@@ -9,9 +9,9 @@
         ""
       ],
       "stopAtEntry": false,
-      "cwd": "c:/Users/BRBCO/Desktop/VIT/Leetcode questions/strings",
+      "cwd": "c:/Users/BRBCO/Desktop/VIT/Leetcode questions/Arrays",
       "environment": [],
-      "program": "c:/Users/BRBCO/Desktop/VIT/Leetcode questions/strings/build/Debug/outDebug",
+      "program": "c:/Users/BRBCO/Desktop/VIT/Leetcode questions/Arrays/build/Debug/outDebug",
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "gdb",
       "miDebuggerPath": "C:/MinGW/bin/gdb.exe",
