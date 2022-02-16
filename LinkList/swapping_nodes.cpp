@@ -1,6 +1,45 @@
 #include <iostream>
 using namespace std;
 
+/// 1st approach
+/// Most optimized
+/// One pass solution
+
+// Runtime: 774 ms, faster than 63.43% of C++ online submissions for Swapping Nodes in a Linked List.
+// Memory Usage: 180.2 MB, less than 60.56% of C++ online submissions for Swapping Nodes in a Linked List.
+
+class Solution
+{
+public:
+    ListNode *swapNodes(ListNode *head, int k)
+    {
+
+        ListNode *ptr1 = head;
+        ListNode *ptr2 = head;
+        ListNode *kth = NULL;
+
+        while (--k)
+        {
+            ptr1 = ptr1->next;
+        }
+
+        kth = ptr1;
+        cout << kth->val;
+
+        ptr1 = ptr1->next;
+
+        while (ptr1)
+        {
+            ptr1 = ptr1->next;
+            ptr2 = ptr2->next;
+        }
+
+        swap(ptr2->val, kth->val);
+
+        return head;
+    }
+};
+
 // 1st approach
 // Runtime: 923 ms, faster than 48.55% of C++ online submissions for Swapping Nodes in a Linked List.
 // Memory Usage: 180.1 MB, less than 90.81% of C++ online submissions for Swapping Nodes in a Linked List.
