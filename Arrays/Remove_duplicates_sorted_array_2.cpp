@@ -2,6 +2,68 @@
 #include<map>
 #include<vector>
 
+
+/// OPtimized approach
+/// Faster than 100%
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        
+        // TWO POINTER APPROACH
+        
+        if(nums.size()<3)return nums.size();
+        
+        int j=1,count=0;
+        int n=nums.size();
+        
+        for(int i=1;i<n;i++){
+            if(nums[i-1]==nums[i]){
+                count++;
+                
+                if(count<2){
+                    nums[j]=nums[i];
+                    j++;
+                }
+            }
+            else{
+                count=0;
+                nums[j]=nums[i];
+                j++;
+            }
+        }
+        return j;
+    }
+};class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        
+        // TWO POINTER APPROACH
+        
+        if(nums.size()<3)return nums.size();
+        
+        int j=1,count=0;
+        int n=nums.size();
+        
+        for(int i=1;i<n;i++){
+            if(nums[i-1]==nums[i]){
+                count++;
+                
+                if(count<2){
+                    nums[j]=nums[i];
+                    j++;
+                }
+            }
+            else{
+                count=0;
+                nums[j]=nums[i];
+                j++;
+            }
+        }
+        return j;
+    }
+};
+
 using namespace std;
 // Approach-1
 // Runtime: 12 ms, faster than 26.55% of C++ online submissions for Remove Duplicates from Sorted Array II.
