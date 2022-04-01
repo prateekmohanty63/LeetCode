@@ -5,13 +5,11 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "args": [
-        ""
-      ],
+      "args": [],
       "stopAtEntry": false,
-      "cwd": "c:/Users/BRBCO/Desktop/VIT/Leetcode questions/Number_theory",
+      "cwd": "c:/Users/BRBCO/Desktop/VIT/Leetcode questions",
       "environment": [],
-      "program": "c:/Users/BRBCO/Desktop/VIT/Leetcode questions/Number_theory/build/Debug/outDebug",
+      "program": "c:/Users/BRBCO/Desktop/VIT/Leetcode questions/build/Debug/outDebug",
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "gdb",
       "miDebuggerPath": "C:/MinGW/bin/gdb.exe",
