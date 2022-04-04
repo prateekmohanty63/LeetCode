@@ -3,6 +3,8 @@
 using namespace std;
 
 // 1st approach
+// Here I am using greedy approach
+// Hence it is failing for some test cases
 
 class Solution
 {
