@@ -7,13 +7,11 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
+      "externalConsole": false,
       "cwd": "c:/Users/BRBCO/Desktop/VIT/Leetcode questions",
-      "environment": [],
       "program": "c:/Users/BRBCO/Desktop/VIT/Leetcode questions/build/Debug/outDebug",
-      "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "gdb",
       "miDebuggerPath": "C:/MinGW/bin/gdb.exe",
-      "console": "integratedTerminal",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
