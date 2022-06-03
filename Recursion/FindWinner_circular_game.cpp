@@ -57,6 +57,29 @@ public:
     }
 };
 
+// iterative method
+//Runtime: 0 ms, faster than 100.00% of C++ online submissions for Find the Winner of the Circular Game.
+//Memory Usage: 5.8 MB, less than 91.71% of C++ online submissions for Find the Winner of the Circular Game.
+
+class Solution {
+public:
+    
+    int winner(int n,int k)
+    {
+        int ans=0;
+        for(int i=1;i<=n;i++)
+        {
+           ans=(ans+k)%i; 
+        }
+        return ans;
+    }
+    int findTheWinner(int n, int k) {
+        int res=winner(n,k);
+        
+        return res+1;
+    }
+};
+
 int main()
 {
     
