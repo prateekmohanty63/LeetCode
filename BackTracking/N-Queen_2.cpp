@@ -2,36 +2,34 @@
 #include<vector>
 using namespace std;
 
-
-//Runtime: 18 ms, faster than 33.15% of C++ online submissions for N-Queens.
-//Memory Usage: 7.2 MB, less than 86.66% of C++ online submissions for N-Queens.
-
+// 1st method
 class Solution {
 public:
-    
+    vector<vector<string>>res;
     bool isValid(vector<string>&board,int row,int col)
     {
-        // check col
+        // checking column
         for(int i=row;i>=0;i--)
         {
             if(board[i][col]=='Q')return false;
+            
         }
         
-        // check left diagonal
-        for(int i=row,j=col;i>=0 && j>=0;--i,--j){
+        // checking left diagonal
+        for(int i=row,j=col;i>=0 && j>=0; --i,--j)
+        {
             if(board[i][j]=='Q')return false;
         }
         
-        // check right diagonal
-        for(int i=row,j=col;i>=0 && j<board.size();--i,++j)
-        {
+        // checking right diagonal
+        for(int i=row,j=col;i>=0 && j<board.size();--i,++j){
             if(board[i][j]=='Q')return false;
         }
         
         return true;
     }
     
-    void dfs(vector<string>&board,int row,vector<vector<string>>&res)
+      void dfs(vector<string>&board,int row)
     {
         // base case
         if(row==board.size()){
@@ -47,21 +45,25 @@ public:
                 board[row][i]='Q';
                 
                 // next iteration
-                dfs(board,row+1,res);
+                dfs(board,row+1);
                 
                 // backtrack
                 board[row][i]='.';
             }
         }
     }
-    vector<vector<string>> solveNQueens(int n) {
-        vector<vector<string>>res;
+    int totalNQueens(int n) {
+        
+        if(n==1)return 1;
         int row=0;
         vector<string>board(n,string(n,'.'));
         
-        dfs(board,0,res);
+       
         
-        return res;
+        dfs(board,row);
+        
+        return res.size();
+        
     }
 };
 
