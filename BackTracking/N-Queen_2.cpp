@@ -3,6 +3,8 @@
 using namespace std;
 
 // 1st method
+//Runtime: 7 ms, faster than 58.17% of C++ online submissions for N-Queens II.
+//Memory Usage: 6.7 MB, less than 34.70% of C++ online submissions for N-Queens II.
 class Solution {
 public:
     vector<vector<string>>res;
