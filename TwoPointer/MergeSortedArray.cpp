@@ -3,6 +3,30 @@
 #include<algorithm>
 using namespace std;
 
+//Runtime: 5 ms, faster than 34.50% of C++ online submissions for Merge Sorted Array.
+//Memory Usage: 9.1 MB, less than 72.57% of C++ online submissions for Merge Sorted Array.
+
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        
+        int i=m-1;
+        int j=n-1;
+        int k=n+m-1;
+        
+        while(j>=0)
+        {
+            if(i>=0 && nums1[i]>nums2[j])
+            {
+                nums1[k--]=nums1[i--];
+            }
+            else{
+                nums1[k--]=nums2[j--];
+            }
+        }
+    }
+};
+
 // Runtime: 7 ms, faster than 24.43% of C++ online submissions for Merge Sorted Array.
 // Memory Usage: 9.2 MB, less than 30.68% of C++ online submissions for Merge Sorted Array.
 
