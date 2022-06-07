@@ -5,7 +5,7 @@ using namespace std;
 
 // Runtime: 4 ms, faster than 49.07% of C++ online submissions for Merge Sorted Array.
 // Memory Usage: 9.1 MB, less than 30.68% of C++ online submissions for Merge Sorted Array.
-// runtime is O(nlogn)
+// runtime is O(nlog)
 
 
 class Solution {
