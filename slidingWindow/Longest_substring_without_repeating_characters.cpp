@@ -3,6 +3,9 @@
 #include<algorithm>
 using namespace std;
 
+// Runtime: 14 ms, faster than 75.73% of C++ online submissions for Longest Substring Without Repeating Characters.
+// Memory Usage: 7.1 MB, less than 87.94% of C++ online submissions for Longest Substring Without Repeating Characters.
+
 class Solution
 {
 public:
