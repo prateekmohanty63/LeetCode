@@ -4,6 +4,8 @@
 #include<algorithm>
 using namespace std;
 
+
+
 class Solution
 {
 public:
@@ -40,6 +42,19 @@ public:
             it = find(substrings.begin(), substrings.end(), searchString);
 
             if (it != substrings.end())
+                count++;
+        }
+        return count;
+    }
+};
+
+class Solution {
+public:
+    int numOfStrings(vector<string>& patterns, string word) {
+         int count=0;
+        for(int i=0;i<patterns.size();i++)
+        {
+            if(word.find(patterns[i])!=string::npos)
                 count++;
         }
         return count;
