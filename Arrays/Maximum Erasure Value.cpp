@@ -2,6 +2,9 @@
 #include<vector>
 using namespace std;
 
+// Runtime: 317 ms, faster than 80.44% of C++ online submissions for Maximum Erasure Value.
+// Memory Usage: 96.4 MB, less than 91.62% of C++ online submissions for Maximum Erasure Value.
+
 class Solution {
 public:
     int maximumUniqueSubarray(vector<int>& nums) {
