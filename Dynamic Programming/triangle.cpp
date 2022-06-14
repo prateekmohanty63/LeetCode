@@ -6,6 +6,8 @@ using namespace std;
 // Memory Usage: 9.1 MB, less than 26.05% of C++ online submissions for Triangle.
 
 // memoization
+// note that here we are using O(N^2) space complexity
+
 class Solution {
 public:
     int minSum(vector<vector<int>>&triangle,int row,int col,int n,vector<vector<int>>&dp)
