@@ -3,6 +3,41 @@
 #include<vector>
 using namespace std;
 
+
+// recursion gives TLE
+
+class Solution {
+public:
+    int maxLength(string &word1,string &word2,int i,int j)
+    {
+        if(i==word1.length() || j==word2.length())return 0;
+        
+        // if equal
+        
+        if(word1[i]==word2[j])
+        {
+            return 1+maxLength(word1,word2,i+1,j+1);
+        }
+        
+        // if not equal
+        else{
+            return max(maxLength(word1,word2,i+1,j),maxLength(word1,word2,i,j+1));
+        }
+    }
+    int minDistance(string word1, string word2) {
+        
+        int n=word1.size();
+        int m=word2.size();
+        
+        int maxSubsequence=maxLength(word1,word2,0,0);
+        
+        cout<<maxSubsequence;
+        
+        return m+n-2*maxSubsequence;
+        
+    }
+};
+
 // solution doesn't pass all test cases (926/1306)
 
 class Solution {
