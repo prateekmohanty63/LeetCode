@@ -3,6 +3,51 @@
 #include<vector>
 using namespace std;
 
+// Runtime: 54 ms, faster than 20.04% of C++ online submissions for Delete Operation for Two Strings.
+// Memory Usage: 12.2 MB, less than 49.22% of C++ online submissions for Delete Operation for Two Strings.
+
+class Solution {
+public:
+    int maxLength(string &word1,string &word2,int n,int m)
+    {
+        vector<vector<int>>dp(n+1,vector<int>(m+1));
+         int result;
+        for(int i=0;i<=n;i++)
+        {
+            for(int j=0;j<=m;j++)
+            {
+             
+                if(i==0 || j==0)
+                    dp[i][j]=0;
+                
+                else if(word1[i-1]==word2[j-1])
+                {
+                    dp[i][j]=1+dp[i-1][j-1];
+                    
+                }
+                else{
+                    dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+                }
+                
+            }
+        }
+        return n+m-2*dp[n][m];
+    }
+    int minDistance(string word1, string word2) {
+        
+        int n=word1.size();
+        int m=word2.size();
+       
+        
+        int maxSubsequence=maxLength(word1,word2,n,m);
+        
+        cout<<maxSubsequence;
+        
+        return maxSubsequence;
+        
+    }
+};
+
 
 // recursion gives TLE
 
