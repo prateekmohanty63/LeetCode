@@ -4,6 +4,61 @@
 
 using namespace std;
 
+// NOTE THE IDEA IS DONT USE A FUNCTION TO CHECK PALINDROME
+// IF IT IS PALINDROME JUST USE TWO POINTER METHOD TO SEE IF THE CHARACTERS YOU ARE ADDING IS SAME OR NOT
+
+class Solution {
+public:
+    
+    // idea is dont make a function which chekcs if a string is palindrome
+    string longestPalindrome(string s) {
+        
+       
+        int max=INT_MIN;
+        string res;
+        int n=s.length();
+        
+        // odd length palindrome
+        for(int i=0;i<n;i++)
+        {
+            int l=i,r=i;
+            
+            while(l>=0 && r<n && s[l]==s[r])
+            {
+                int len=r-l+1;
+                if(len>max)
+                {
+                    max=len;
+                    res=s.substr(l,r-l+1);
+                }
+                l--;
+                r++;
+                
+            }
+            
+            // even length
+             l=i;
+             r=i+1;
+            
+            while(l>=0 && r<n && s[l]==s[r])
+            {
+                int len=r-l+1;
+                if(len>max)
+                {
+                    max=len;
+                    res=s.substr(l,r-l+1);
+                }
+                l--;
+                r++;
+            }
+        }
+        
+        //  even length palindrome
+      
+         return res; 
+}
+};
+
 // though this solution is correct , it gives TLE
 
 class Solution {
