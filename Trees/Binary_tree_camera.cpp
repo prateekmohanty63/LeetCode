@@ -13,6 +13,9 @@ using namespace std;
   };
  
 
+//  Runtime: 8 ms, faster than 90.78% of C++ online submissions for Binary Tree Cameras.
+// Memory Usage: 21.2 MB, less than 87.57% of C++ online submissions for Binary Tree Cameras.
+
 class Solution {
 public:
     #define HAS_CAMERA 2
