@@ -1,7 +1,58 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+#include<unordered_set>
 using namespace std;
+
+// this solution is using hast set
+class Solution {
+public:
+    
+    static bool cmp(string &a,string &b)
+    {
+        return a.length()>b.length();
+    }
+    int minimumLengthEncoding(vector<string>& words) {
+        
+        int n=words.size();
+        int res=0;
+        
+        sort(words.begin(),words.end(),cmp);
+        
+//         for(int i=0;i<n;i++)
+//             cout<<words[i]<<" ";
+        
+        unordered_set<string>set1;
+        
+        for(int i=0;i<n;i++)
+        {
+            set1.insert(words[i]);
+        }
+        
+        for(string s:words)
+        {
+            for(int i=1;i<s.length();i++)
+            {
+                string key=s.substr(i);
+                cout<<key<<" ";
+                set1.erase(key);
+            }
+            cout<<endl;
+        }
+        
+        unordered_set<string> :: iterator itr;
+        for(itr=set1.begin();itr!=set1.end();itr++)
+        {
+            string a=*itr;
+            //cout<<a<<" ";
+            res+=a.length()+1;
+            
+            
+        }
+        return res;
+    }
+};
+
 
 class Solution {
 public:
