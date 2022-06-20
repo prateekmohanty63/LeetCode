@@ -2,6 +2,8 @@
 using namespace std;
 
 // Trie Data structure
+// Runtime: 102 ms, faster than 45.77% of C++ online submissions for Implement Trie (Prefix Tree).
+// Memory Usage: 45 MB, less than 50.14% of C++ online submissions for Implement Trie (Prefix Tree).
 class Trie {
     struct Trienode
     {
