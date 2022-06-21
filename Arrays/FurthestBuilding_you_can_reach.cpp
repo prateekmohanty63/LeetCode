@@ -1,6 +1,10 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
+
+// This is a greedy solution hence wont work
+// only 60/76 test cases passing
 class Solution {
 public:
     int furthestBuilding(vector<int>& heights, int bricks, int ladders) {
