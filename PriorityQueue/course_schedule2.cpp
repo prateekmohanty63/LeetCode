@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<algorithm>
 using namespace std;
 
 // Runtime: 423 ms, faster than 33.28% of C++ online submissions for Course Schedule III.
