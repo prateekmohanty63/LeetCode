@@ -3,6 +3,36 @@
 #include<climits>
 using namespace std;
 
+
+// Runtime: 91 ms, faster than 44.64% of C++ online submissions for Maximum Points You Can Obtain from Cards.
+// Memory Usage: 42.4 MB, less than 80.56% of C++ online submissions for Maximum Points You Can Obtain from Cards.
+class Solution {
+public:
+
+    int maxScore(vector<int>& cardPoints, int k) {
+        
+        int n=cardPoints.size();
+        int res=0;
+        
+       
+        for(int i=0;i<k;i++)res+=cardPoints[i];
+        
+        if(n==k)return res;
+        
+        int curr=res;
+        
+       
+        for(int i=k-1;i>=0;i--)
+        {
+            curr-=cardPoints[i];
+            curr+=cardPoints[cardPoints.size()-k+i];
+            
+            res=max(res,curr);
+        }
+        return res;
+    }
+};
+
 // code correct
 // though giving memory limit exceeded
 class Solution {
