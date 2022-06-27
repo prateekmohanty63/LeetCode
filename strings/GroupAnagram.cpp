@@ -1,7 +1,37 @@
 #include <iostream>
 #include<vector>
 #include<algorithm>
+#include<map>
 using namespace std;
+
+// using map and sorting
+// Runtime: 91 ms, faster than 16.26% of C++ online submissions for Group Anagrams.
+// Memory Usage: 19.8 MB, less than 68.83% of C++ online submissions for Group Anagrams.
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        
+        int n=strs.size();
+        map<string,vector<string>>map1;
+        vector<vector<string>>res;
+        
+        
+        for(int i=0;i<n;i++)
+        {
+            string a=strs[i];
+            sort(a.begin(),a.end());
+            map1[a].push_back(strs[i]);
+        }
+        
+        map<string,vector<string>>::iterator itr;
+        
+        for(itr=map1.begin();itr!=map1.end();itr++)
+        {
+            res.push_back(itr->second);
+        }
+        return res;
+    }
+};
 
 // solution is correct but giving TLE
 // 111/117 test cases passed
