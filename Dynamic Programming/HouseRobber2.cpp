@@ -4,6 +4,7 @@
 using namespace std;
 
 // my solutions
+// memoization
 
 class Solution {
 public:
@@ -45,6 +46,42 @@ public:
         bool rob=false;
         unordered_map<string,int>dp;
         return maxMoney(nums,0,rob,dp);
+    }
+};
+
+
+// other optimized solutions
+// top-down approach
+
+class Solution {
+public:
+    
+    int maxMoney(vector<int>nums)
+    {
+        vector<int>dp(nums.size()+1,0);
+        
+        // if there is only 1 house
+        dp[0]=nums[0];
+        
+        // if there are 2 houses
+        dp[1]=max(nums[0],nums[1]);
+        
+        for(int i=2;i<nums.size();i++)
+        {
+            dp[i]=max(nums[i]+dp[i-2],dp[i-1]);
+        }
+        return dp[nums.size()-1];
+    }
+    int rob(vector<int>& nums) {
+        
+         if (nums.size() == 0) return 0;
+        if (nums.size() == 1) return nums[0];
+        if (nums.size() == 2) return max(nums[0], nums[1]);
+        
+        vector<int>vec1(nums.begin()+1,nums.end());
+        vector<int>vec2(nums.begin(),nums.end()-1);
+        
+        return max(maxMoney(vec1),maxMoney(vec2));
     }
 };
 
