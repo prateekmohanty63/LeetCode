@@ -2,9 +2,67 @@
 #include<vector>
 #include<unordered_map>
 #include<set>
+#include<algorithm>
 using namespace std;
 
 
+// O(1) space complexity
+//Runtime: 46 ms, faster than 5.74% of C++ online submissions for Majority Element II.
+//Memory Usage: 15.7 MB, less than 97.24% of C++ online submissions for Majority Element II.
+
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        
+        vector<int>res;
+        
+        int n=nums.size();
+        
+        sort(nums.begin(),nums.end());
+        
+        int count=0;
+        
+        if(n==1)
+        {
+            res.push_back(nums[0]);
+            return res;
+        }
+        
+        for(int i=0;i<n-1;i++)
+        {
+            if(nums[i]==nums[i+1])
+            {
+                count++;
+                
+                if(count+1>(floor(n/3)) && find(res.begin(),res.end(),nums[i])==res.end())
+                {
+                    res.push_back(nums[i]);
+                    
+                }
+            }
+            else{
+                count=0;
+                 if(count+1>(floor(n/3)) && find(res.begin(),res.end(),nums[i])==res.end())
+                {
+                    res.push_back(nums[i]);
+                    
+                }
+                
+            }
+        }
+        
+        if(count+1>(floor(n/3)) && find(res.begin(),res.end(),nums[nums.size()-1])==res.end())
+        {
+                    res.push_back(nums[nums.size()-1]);
+                    
+        }
+        return res;
+    }
+};
+
+
+// O(N) space complexity
+// O(N) time complexity
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
@@ -34,6 +92,9 @@ public:
     }
 };
 
+
+// O(N) space complexity
+// O(N) time complexity
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
