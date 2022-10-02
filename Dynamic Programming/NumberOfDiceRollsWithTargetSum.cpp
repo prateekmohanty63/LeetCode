@@ -3,6 +3,9 @@
 using namespace std;
 
 
+//Runtime: 94 ms, faster than 23.05% of C++ online submissions for Number of Dice Rolls With Target Sum.
+//Memory Usage: 14.2 MB, less than 5.85% of C++ online submissions for Number of Dice Rolls With Target Sum.
+
 class Solution {
 public:
     
