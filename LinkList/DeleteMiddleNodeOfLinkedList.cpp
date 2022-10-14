@@ -3,6 +3,48 @@
 
 using namespace std;
 
+// using slow and fast pointers
+
+class Solution {
+public:
+    ListNode* deleteMiddle(ListNode* head) {
+        
+        
+        if(!head || !head->next)return NULL;
+        
+        
+        ListNode* slow=head;
+        ListNode* fast=head;
+        
+        ListNode* nxt=slow;
+        
+        int k=0;
+        
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            // move slow by 1
+            slow=slow->next;
+            
+            if(k==0){
+                nxt=head;
+                k=1;
+            }
+            else{
+                nxt=nxt->next;
+            }
+           
+            
+            // move fast by 2
+            fast=fast->next->next;
+        }
+        cout<<slow->val<<" "<<nxt->val;
+        
+        nxt->next=slow->next;
+        
+        return head;
+    }
+};
+
 
   //Definition for singly-linked list.
   struct ListNode {
