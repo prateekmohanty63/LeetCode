@@ -15,6 +15,49 @@ using namespace std;
       ListNode(int x) : val(x), next(nullptr) {}
       ListNode(int x, ListNode *next) : val(x), next(next) {}
  };
+
+
+
+ class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        
+        // if no head return NULL
+        
+        if(!head)return NULL;
+        
+        // if only head return head
+        
+        if(!head->next)return head;
+        
+        // dummy node
+        ListNode *dum=new ListNode(0);
+        
+          
+        ListNode *first=dum;
+        ListNode *second=head;
+        ListNode *third=head;
+        
+        while(second!=NULL)
+        {
+            
+                while(third!=NULL && second->val==third->val)
+                {
+                    third=third->next;
+                }
+           
+            if(second->next==third)
+            {
+                first->next=second;
+                first=first->next;
+            }
+            second=third;
+        }
+       
+        first->next=NULL;
+    return dum->next;
+    }
+};
  
 class Solution {
 public:
