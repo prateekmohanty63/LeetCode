@@ -2,6 +2,7 @@
 #include<vector>
 #include<algorithm>
 #include<unordered_set>
+#include<queue>
 using namespace std;
 
 // Runtime: 0 ms, faster than 100.00% of C++ online submissions for Minimum Genetic Mutation.
