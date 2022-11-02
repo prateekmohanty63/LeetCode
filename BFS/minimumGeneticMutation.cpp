@@ -2,6 +2,11 @@
 #include<vector>
 using namespace std;
 
+
+// this is greedy method
+// greedy method wont work here , as there can be many possible combinations to reach the target mutations
+// from the all possible paths we need to find the shotest path to reach the target mutation
+
 class Solution {
 public:
 
