@@ -1,7 +1,71 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+#include<unordered_set>
 using namespace std;
+
+// Runtime: 0 ms, faster than 100.00% of C++ online submissions for Minimum Genetic Mutation.
+// Memory Usage: 6.5 MB, less than 81.49% of C++ online submissions for Minimum Genetic Mutation.
+
+
+class Solution {
+public:
+    int minMutation(string start, string end, vector<string>& bank) {
+        
+        unordered_set<string>st{bank.begin(),bank.end()};
+        
+        // end string is not a valid string
+        if(!st.count(end))return -1;
+        
+        // start BFS by pushing into queue
+        
+        queue<string>Q;
+        
+        Q.push(start);
+        
+        int steps=0,s;
+        
+        string cur,t;
+        
+        while(!Q.empty())
+        {
+           s=Q.size();
+            
+            while(s--)
+            {
+                cur=Q.front();
+                Q.pop();
+                
+                // if we reach the end mutation
+                
+                if(cur==end)return steps;
+                
+                //We erase the cur mutation in order to avoid redundant checking
+			st.erase(cur);
+                
+                // at each index we check the possibility of mutation by replacing it with A,C,G,T
+                
+                for(int i=0;i<8;i++)
+                {
+                    t=cur;
+                    t[i]='A';
+                    if(st.count(t))Q.push(t);
+                    t[i]='C';
+                    if(st.count(t))Q.push(t);
+                    
+                    t[i]='G';
+                    if(st.count(t))Q.push(t);
+                    
+                    t[i]='T';
+                    if(st.count(t))Q.push(t);
+                }
+                
+            }
+            steps++;
+        }
+        return -1;
+    }
+};
 
 
 // this is greedy method
