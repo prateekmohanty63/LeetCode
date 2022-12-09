@@ -2,6 +2,52 @@
 #include<unordered_map>
 using namespace std;
 
+// passed all testcases
+
+class Solution {
+public:
+    int longestSubstring(string s, int k) {
+        
+        int n=s.length();
+
+        if(n==0 || k>n)return 0;
+
+        if(k==1)return n;
+
+        unordered_map<char,int>mp;
+
+        for(auto it:s)
+        {
+            mp[it]++;
+        }
+
+        int low=0;
+
+        while(low<n && mp[s[low]]>=k)
+        {
+            low++;
+        }
+
+     if(low>=n-1)return low;
+
+     // split the string
+
+     int r1=longestSubstring(s.substr(0,low),k);
+
+
+    while(low<n && mp[s[low]]<k)low++;
+
+    int l1;
+       
+       if(low<n)
+       l1=longestSubstring(s.substr(low),k);
+       else l1=0;
+
+       return max(r1,l1);
+
+
+    }
+};
 
 // TLE
 
