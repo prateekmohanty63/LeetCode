@@ -1,6 +1,72 @@
 #include<iostream>
 #include<vector>
+#include<stack>
 using namespace std;
+
+// Faster than 100%
+
+class MyQueue {
+public:
+    stack<int>stk;
+    MyQueue() {
+        
+    }
+    
+    void push(int x) {
+        stk.push(x);
+    }
+    
+    int pop() {
+        stack<int>tmpStack;
+
+        while(!stk.empty())
+        {
+            int a=stk.top();
+            tmpStack.push(a);
+            stk.pop();
+        }
+
+        int res=tmpStack.top();
+        tmpStack.pop();
+
+        while(!tmpStack.empty())
+        {
+            int a=tmpStack.top();
+            stk.push(a);
+            tmpStack.pop();
+        }
+        return res;
+    }
+    
+    int peek() {
+        
+        stack<int>tmpStack;
+
+        while(!stk.empty())
+        {
+            int a=stk.top();
+            tmpStack.push(a);
+            stk.pop();
+        }
+
+        int res=tmpStack.top();
+
+         while(!tmpStack.empty())
+        {
+            int a=tmpStack.top();
+            stk.push(a);
+            tmpStack.pop();
+        }
+
+        return res;
+    }
+    
+    bool empty() {
+        if(stk.empty())return true;
+
+        return false;
+    }
+};
 
 
 class MyQueue {
