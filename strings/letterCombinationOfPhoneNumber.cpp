@@ -5,6 +5,66 @@
 using namespace std;
 
 
+// DFS SOLUTION
+
+class Solution {
+public:
+
+    void dfs(string digits,string path,vector<string>&result,int index)
+    {
+        // base case
+
+        if(index==digits.length())
+        {
+            result.push_back(path);
+            return ;
+        }
+
+        vector<string>vec=mapping(digits[index]);
+
+        for(auto it:vec)
+        {
+            dfs(digits,path+it,result,index+1);
+        }
+    }
+    
+     vector<string> mapping(char c)
+    {
+        switch (c)
+        {
+            case '0': return {};
+            case '1': return {};
+            case '2': return {"a","b","c"};
+            case '3': return {"d","e","f"};
+            case '4': return {"g","h","i"};
+            case '5': return {"j","k","l"};
+            case '6': return {"m","n","o"};
+            case '7': return {"p","q","r","s"};
+            case '8': return {"t","u","v"};
+            case '9': return {"w","x","y","z"};
+            default: return {};
+        }
+    }
+
+    vector<string> letterCombinations(string digits) {
+        
+        if(digits=="")return {};
+
+        string path="";
+
+        vector<string>res;
+
+        int index=0;
+
+        dfs(digits,path,res,0);
+
+        return res;
+
+
+    }
+};
+
+
 class Solution {
 public:
     vector<string> letterCombinations(string digits) {
