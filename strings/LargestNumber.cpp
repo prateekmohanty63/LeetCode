@@ -5,6 +5,48 @@ using namespace std;
 
 class Solution {
 public:
+    
+    static bool cmp(int a,int b)
+    {
+       int i=0,j=0;
+       string str=to_string(a);
+       string str1=to_string(b);
+
+       while(i<str.length() && j<str1.length())
+       {
+           if(str[i]==str1[j])i++,j++;
+
+           else break;
+       }
+
+       if(i<str.length() && j<str1.length())
+       {
+           return str[i]>str1[j];
+       }
+
+       return str+str1>str1+str;
+    }
+
+    string largestNumber(vector<int>& nums) {
+        
+        sort(nums.begin(),nums.end(),cmp);
+
+         if(count(nums.begin(), nums.end(), 0) == nums.size()) 
+            return "0";
+
+            string res;
+
+            for(auto it:nums)
+            {
+                res+=to_string(it);
+            }
+            return res;
+    }
+};
+
+
+class Solution {
+public:
     string largestNumber(vector<int>& nums) {
         
         vector<string>tempArr;
