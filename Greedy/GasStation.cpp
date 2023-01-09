@@ -3,6 +3,47 @@
 using namespace std;
 
 
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        
+         int n=gas.size();
+       
+
+        int totalCost=0;
+        int totalGas=0;
+
+        vector<int>diff;
+
+        for(int i=0;i<n;i++)
+        {
+            totalCost+=cost[i];
+            totalGas+=gas[i];
+
+            diff.push_back(gas[i]-cost[i]);
+        }
+        
+        if(totalCost>totalGas)return -1;
+
+        int total=0;
+        int res=0;
+
+        for(int i=0;i<n;i++)
+        {
+            total+=gas[i]-cost[i];
+
+            if(total<0){
+                total=0;
+                res=i+1;
+            }
+
+        }
+
+        return res;
+    }
+};
+
+
 // Corrrect solution 
 // but TLE
 
