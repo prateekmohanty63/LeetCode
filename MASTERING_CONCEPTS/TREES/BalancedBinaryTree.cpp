@@ -44,6 +44,7 @@ public:
       TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
   };
  
+// naive approach
 
 class Solution {
 public:
