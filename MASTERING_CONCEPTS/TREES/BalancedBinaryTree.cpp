@@ -1,6 +1,37 @@
 #include<iostream>
 using namespace std;
 
+// better code
+
+class Solution {
+public:
+
+   bool ans=true;
+
+   int height(TreeNode *root)
+   {
+       if(!root)return 0;
+
+       int leftDepth=height(root->left);
+       int rightDepth=height(root->right);
+
+     // if at any point we find the height difference to exceed 1 , we make the answer as false
+       if(abs(leftDepth-rightDepth)>1)ans=false;
+
+       if(leftDepth>rightDepth)return 1+leftDepth;
+
+      else return 1+rightDepth;
+       
+   }
+
+  
+
+    bool isBalanced(TreeNode* root) {
+        
+        height(root);
+       return ans;
+    }
+};
 
 
  // Definition for a binary tree node.
@@ -13,6 +44,7 @@ using namespace std;
       TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
   };
  
+
 class Solution {
 public:
    
