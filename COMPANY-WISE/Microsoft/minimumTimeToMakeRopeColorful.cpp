@@ -4,6 +4,46 @@
 using namespace std;
 
 
+// faster than 78%
+
+class Solution {
+public:
+    int minCost(string colors, vector<int>& neededTime) {
+        
+        int n=colors.length();
+        int res=0;
+
+        for(int i=0;i<n;i++)
+        {
+           if(colors[i]==colors[i+1])
+           {
+               int ptr=i;
+               int maxTime=INT_MIN;
+               char col=colors[i];
+    
+               int sum=0;
+
+               while(colors[ptr]==col)
+               {
+                   
+                   sum+=neededTime[ptr];
+
+                   if(neededTime[ptr]>maxTime)
+                   {
+                       maxTime=neededTime[ptr];
+                
+                   }
+                   ptr++;
+               }
+               sum-=maxTime;
+               res+=sum;
+               i=ptr-1;
+           }
+        }
+        return res;
+    }
+};
+
 // TLE (logic correct)
 class Solution {
 public:
