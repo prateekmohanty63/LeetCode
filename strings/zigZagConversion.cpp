@@ -7,6 +7,38 @@ class Solution {
 public:
     string convert(string s, int numRows) {
         
+        if(numRows==1)return s;
+
+        int n=s.length();
+
+        if(n==1)return s;
+        
+        string res;
+
+        for(int i=0;i<numRows;i++)
+        {
+            int incr=2*(numRows-1);
+            for(int j=i;j<n;j+=incr)
+            {
+                res+=s[j];
+
+                if(i>0 && i<numRows-1 && (j+incr-2*i)<n)
+               {
+                  res+=s[j+incr-2*i];
+               }
+            }
+
+            
+        }
+        return res;
+    }
+};
+
+// code giving wrong answer check
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        
         int n=s.length();
 
         if(n==1)return s;
