@@ -5,6 +5,71 @@ using namespace std;
 
 
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+
+// solution-1
+
+class Solution {
+public:
+   
+   bool checkLeftSubTree(int &rootVal,TreeNode *root)
+   {
+       // base case
+
+       if(!root)return true;
+
+       int nodeVal=root->val;
+
+       if(nodeVal>=rootVal)return false;
+
+       return checkLeftSubTree(rootVal,root->left) && checkLeftSubTree(rootVal,root->right);
+   }
+
+   bool checkRightSubTree(int &rootVal,TreeNode *root)
+   {
+       // base case
+
+       if(!root)return true;
+
+       int nodeVal=root->val;
+
+        if(nodeVal<=rootVal)return false;
+
+       return checkRightSubTree(rootVal,root->left) && checkRightSubTree(rootVal,root->right);
+   }
+
+    bool isValidBST(TreeNode* root) {
+        
+        if(!root)return true;
+        
+        bool leftTree=true;
+        bool rightTree=true;
+       
+       if(root->left)
+        leftTree=checkLeftSubTree(root->val,root->left);
+      
+      if(root->right)
+      rightTree=checkRightSubTree(root->val,root->right);
+
+      if(!leftTree || !rightTree)return false;
+
+      return isValidBST(root->left) && isValidBST(root->right);
+
+    }
+};
+
+
+// solution-2
 class Solution {
 public:
     void inorder(TreeNode *root,vector<int>&vec1)
