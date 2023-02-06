@@ -4,6 +4,71 @@
 using namespace std;
 
 
+// T(N): O(N*4^N)
+
+class Solution {
+public:
+   
+   vector<string>res;
+    
+   void generateStrings(string &digits,unordered_map<char,string>&mp,int i,string currString)
+   {
+       // base case
+      
+      if(currString.length()==digits.length())
+      {
+          res.push_back(currString);
+
+          return ;
+      }
+
+      string a=mp[digits[i]];
+
+      for(int j=0;j<a.length();j++)
+      {
+         generateStrings(digits,mp,i+1,currString+a[j]);
+      }
+
+
+
+   }
+  
+              
+
+    vector<string> letterCombinations(string digits) {
+        
+        unordered_map<char,string>mp;
+
+        mp['2']="abc";
+        mp['3']="def";
+        mp['4']="ghi";
+        mp['5']="jkl";
+        mp['6']="mno";
+        mp['7']="pqrs";
+        mp['8']="tuv";
+        mp['9']="wxyz";
+
+       // vector<string>res;
+
+        if(digits=="")return res;
+
+        // if(digits.length()==1)
+        // {
+        //     string a=mp[digits[0]];
+
+        //     for(int i=0;i<a.length();i++)
+        //     {
+        //         string r=string(1,a[i]);
+        //         res.push_back(r);
+        //     }
+        // }
+
+       generateStrings(digits,mp,0,"");
+        return res;
+    }
+};
+
+
 // T(N):O(N^4) FASTER THAN 100%
 
 class Solution {
