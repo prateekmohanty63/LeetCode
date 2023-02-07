@@ -4,6 +4,84 @@
 #include<climits>
 using namespace std;
 
+// solution-2 (better code)
+
+class Solution {
+public:
+    
+    int maxPossibleLength(string a,vector<string>&vec,int i)
+    {
+        // base case
+
+        if(i>=vec.size())return 0;
+        
+        unordered_map<char,bool>mp;
+
+       for(int j=0;j<a.length();j++)
+       {
+           mp[a[j]]=true;
+
+       }
+
+        string currString=vec[i];
+        int m=currString.length();
+        int flag=0;
+
+        for(auto it:currString)
+        {
+            if(mp.find(it)!=mp.end())
+            {
+                flag=1;
+                break;
+            }
+            else mp[it]=true;
+        }
+    
+    if(flag==0)
+    {
+        return max(m+maxPossibleLength(a+currString,vec,i+1),maxPossibleLength(a,vec,i+1));
+    }
+    else return maxPossibleLength(a,vec,i+1);
+
+
+
+    }
+  
+    int maxLength(vector<string>& arr) {
+        
+        int n=arr.size();
+        vector<string>vec;
+        int res=INT_MIN;
+
+        for(int i=0;i<n;i++)
+        {
+            unordered_map<char,bool>mp;
+            int flag=0;
+
+            for(auto it:arr[i])
+            {
+                if(mp.find(it)!=mp.end())
+                {
+                    flag=1;
+                    break;
+                }
+                else mp[it]=true;
+            }
+        
+          if(flag==0)vec.push_back(arr[i]);
+                
+        }
+        res=max(res,maxPossibleLength("",vec,0));
+
+        if(res==INT_MIN)return 0;
+
+        return res;
+    }
+};
+
+
+
+// solution-1
 
 class Solution {
 public:
