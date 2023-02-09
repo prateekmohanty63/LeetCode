@@ -13,6 +13,44 @@ using namespace std;
   };
 
 
+
+class Solution {
+public:
+   
+   int sum(TreeNode *root,int num)
+   {
+      // base case
+
+      if(!root)return 0;
+       
+       num=num*10+root->val;
+
+      if(!root->left && !root->right)
+      {
+         
+          return  num;
+      }
+    
+      return sum(root->left,num)+sum(root->right,num);
+
+      
+   }
+    
+    int sumNumbers(TreeNode* root) {
+        
+       
+        int res=0;
+
+        
+
+       res=sum(root,0);
+
+
+        return res;
+    }
+};
+
+
 class Solution {
 public:
    
