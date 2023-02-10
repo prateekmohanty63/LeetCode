@@ -5,6 +5,95 @@
 using namespace std;
 
 
+// multi-source BFS (important)
+// all test cases passed
+
+class Solution {
+public:
+    int maxDistance(vector<vector<int>>& grid) {
+        
+        // The question can be done by finding the distance of nearest land to all water sources
+        // then returning the maximum distance from those distances
+        // the time complexity would be: O(n^4)
+
+        queue<pair<int,int>>q;
+
+        vector<vector<int>>visited=grid;
+
+        // pushing all lands coordinates to queue
+
+        int n=grid.size();
+
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(grid[i][j]==1)
+                {
+                    q.push({i,j});
+                }
+            }
+        }
+
+        // if no land present
+
+        if(q.size()==0)return -1;
+
+        // if no water present
+        if(q.size()==n*n)return -1;
+
+        int distance=-1;
+
+        while(!q.empty())
+        {
+            int size=q.size();
+            
+
+            while(size--)
+            {
+               auto [x,y]=q.front();
+               q.pop();
+
+               // push left coordinated
+
+               if(y-1>=0 && visited[x][y-1]!=2)
+               {
+                   q.push({x,y-1});
+                   visited[x][y-1]=2;
+               }
+
+               // push right coordinate
+
+               if(y+1<n && visited[x][y+1]!=2)
+               {
+                   q.push({x,y+1});
+                   visited[x][y+1]=2;
+               }
+
+               // push up coordinate
+
+               if(x-1>=0 && visited[x-1][y]!=2)
+               {
+                   q.push({x-1,y});
+                   visited[x-1][y]=2;
+               }
+
+               // pushing down coordinated
+
+               if(x+1<n && visited[x+1][y]!=2)
+               {
+                   q.push({x+1,y});
+                   visited[x+1][y]=2;
+               }
+            }
+          
+          distance++;
+        }
+        return distance;
+    }
+};
+
+
 // Logic correct
 // Giving TLE (19/37) cases passed
 
