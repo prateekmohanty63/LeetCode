@@ -4,6 +4,54 @@
 using namespace std;
 
 
+
+// optimized solution
+class Solution {
+public:
+    int countServers(vector<vector<int>>& grid) {
+        
+        int n=grid.size();
+        int m=grid[0].size();
+        int res=0;
+
+        vector<int>rowCount(n,0);
+        vector<int>colCount(m,0);
+
+        for(int i=0;i<n;i++)
+        {
+            int count=0;
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j]==1)count++;
+            }
+            rowCount[i]=count;
+        }
+
+        for(int i=0;i<m;i++)
+        {
+            int count=0;
+            for(int j=0;j<n;j++)
+            {
+                if(grid[j][i]==1)count++;
+            }
+            colCount[i]=count;
+        }
+
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(grid[i][j]==1)
+                {
+                    if(rowCount[i]>=2 || colCount[j]>=2)res++;
+                }
+            }
+        }
+        return res;
+    }
+};
+
+
 class Solution {
 public:
     int countServers(vector<vector<int>>& grid) {
