@@ -3,6 +3,8 @@
 #include <cmath>
 using namespace std;
 
+// Giving precision error
+// going out of long long , because array is of size 10^4
 
 class Solution {
 public:
