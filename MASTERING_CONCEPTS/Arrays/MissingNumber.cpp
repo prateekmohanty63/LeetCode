@@ -54,6 +54,34 @@ public:
 };
 
 
+// 3rd approach
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        
+        int n=nums.size();
+
+        // suppose n=4
+
+        // we calculate (0^1^3^4)^(0^1^2^3^4) == 2
+        
+        int tar=0;
+        int i=0;
+
+        for(i=0;i<n;i++)
+        {
+            tar=tar^nums[i]^i;
+        }
+       
+       tar=tar^i;
+
+       return tar;
+       
+    }
+};
+
+
 int main()
 {
     
