@@ -28,6 +28,31 @@ public:
     }
 };
 
+// 2nd approach
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        
+        int n=nums.size();
+
+        int sum=0;
+        
+
+        for(int i=0;i<n;i++)
+        {
+
+            sum+=nums[i];
+        }
+
+        int reqSum=n*(n+1)/2;
+
+        cout<<reqSum<<" "<<sum;
+
+        return reqSum-sum;
+    }
+};
+
 
 int main()
 {
