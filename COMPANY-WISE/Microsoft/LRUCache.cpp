@@ -4,6 +4,12 @@
 using namespace std;
 
 
+// logic correct
+// giving TLE
+// The functions get and put must each run in O(1) average time complexity.
+// this code is running in O(N)
+
+
 class LRUCache {
 public:   
 
