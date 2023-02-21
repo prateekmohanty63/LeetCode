@@ -77,6 +77,70 @@ public:
     }
 };
 
+
+// check the code
+class LRUCache {
+public:   
+
+    int maxCapacity;
+    unordered_map<int,int>cache;
+    vector<int>usedOrder;
+    unordered_map<int,int>keyVal;
+
+
+    LRUCache(int capacity) {
+         
+         maxCapacity=capacity;
+    }
+    
+    int get(int key) {
+
+        if(cache.find(key)!=cache.end()){
+        
+         int i=keyVal[key];
+         usedOrder.erase(usedOrder.begin()+i);
+         usedOrder.push_back(key);
+         keyVal[key]=usedOrder.size()-1;
+
+          return cache[key];
+        }
+
+        return -1;
+        
+    }
+    
+    void put(int key, int value) {
+        
+        if(cache.find(key)!=cache.end())
+        {
+           int i=keyVal[key];
+           usedOrder.erase(usedOrder.begin()+i);   
+           usedOrder.push_back(key);
+           keyVal[key]=usedOrder.size()-1;
+
+            cache[key]=value;
+            return ;
+        }
+
+        maxCapacity--;
+
+        if(maxCapacity<0)
+        {
+               
+            int keyToRemove=usedOrder[0];
+
+            cache.erase(keyToRemove);
+            usedOrder.erase(usedOrder.begin());
+            keyVal.erase(keyToRemove);
+        }
+        cache[key]=value;
+        usedOrder.push_back(key);
+        keyVal[key]=usedOrder.size()-1;
+
+    }
+};
+
+
 /**
  * Your LRUCache object will be instantiated and called as such:
  * LRUCache* obj = new LRUCache(capacity);
