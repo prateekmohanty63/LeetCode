@@ -4,6 +4,113 @@
 using namespace std;
 
 
+
+// most efficient method
+// O(1) get and put , becuase of linked list
+
+class LRUCache {
+public:
+class Node{  
+   public:
+
+    int key;
+    int val;
+    Node* prev;
+    Node* next;
+
+    Node(int _key,int _val)
+    {
+        key=_key;
+        val=_val;
+    }
+};
+
+  unordered_map<int,Node*>cache;
+  Node* head=new Node(-1,-1);
+  Node* tail= new Node(-1,-1);
+  int maxCapacity;
+
+
+    LRUCache(int capacity) {
+        
+        maxCapacity=capacity;
+        head->next=tail;
+        tail->prev=head;
+    }
+
+    void addNode(Node *node)
+    {
+        Node *temp=head->next;
+        node->next=temp;
+        node->prev=head;
+        head->next=node;
+        temp->prev=node;
+       
+       
+    }
+
+    void delNode(Node *delnode)
+    {
+       Node* delPrev=delnode->prev;
+       Node* delNext=delnode->next;
+
+       delPrev->next=delNext;
+       delNext->prev=delPrev;
+    }
+    
+    int get(int key) {
+        
+        if(cache.find(key)!=cache.end())
+        {
+            Node *node=cache[key];
+            cache.erase(key);
+            delNode(node);
+            addNode(node);
+            
+            cache[key]=head->next;
+
+            return node->val;
+        }
+
+        return -1;
+    }
+    
+    void put(int key, int value) {
+        
+        if(cache.find(key)!=cache.end())
+        {
+            Node *node=cache[key];
+            cache.erase(key);
+
+            delNode(node);
+           
+        }
+
+        if(maxCapacity==cache.size())
+        {
+            cache.erase(tail->prev->key);
+            delNode(tail->prev);
+            
+            
+        }
+        
+       Node *node=new Node(key,value);
+       addNode(node);
+       cache[key]=head->next;
+
+   
+        
+    }
+};
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
+
+
 // logic correct
 // giving TLE
 // The functions get and put must each run in O(1) average time complexity.
