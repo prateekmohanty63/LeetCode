@@ -3,6 +3,42 @@
 using namespace std;
 
 
+// TLE , passed 57 test cases
+class Solution {
+public:
+   
+   long long maxPnt(vector<vector<int>>&points,int i,int prev,int n,int m)
+   {
+       // base case
+
+       if(i>=n)return 0;
+
+       long long maxim=0;
+
+       for(int j=0;j<m;j++)
+       {
+           if(i!=0 && prev!=-1)
+           {
+               maxim=max(maxim,points[i][j]-abs(j-prev)+maxPnt(points,i+1,j,n,m));
+           }
+           else{
+               maxim=max(maxim,points[i][j]+maxPnt(points,i+1,j,n,m));
+           }
+       }
+       return maxim;
+   }
+
+    long long maxPoints(vector<vector<int>>& points) {
+        
+        int n=points.size();
+        int m=points[0].size();
+        long long res=maxPnt(points,0,-1,n,m);
+
+        return res;
+    }
+};
+
+
 // giving TLE after 140 cases
 
 class Solution {
