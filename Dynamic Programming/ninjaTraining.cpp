@@ -4,6 +4,43 @@
 
 using namespace std;
 
+// Passed all test-cases
+
+int maxPoints(vector<vector<int>>&points,int i,int prev,vector<vector<int>>&dp)
+{
+    // base case
+
+    if(i>=points.size())return 0;
+
+   if(dp[i][prev+1]!=-1)return dp[i][prev+1];
+
+    int maxim=0;
+
+
+    for(int j=0;j<3;j++)
+    {
+        if(j!=prev)
+        {
+            int pnt=points[i][j]+maxPoints(points,i+1,j,dp);
+            maxim=max(maxim,pnt);
+        }
+    }
+
+    return dp[i][prev+1]=maxim;
+}
+
+int ninjaTraining(int n, vector<vector<int>> &points)
+{
+    // Write your code here.
+
+    vector<vector<int>>dp(n+1,vector<int>(4,-1));
+
+   int res=maxPoints(points,0,-1,dp);
+
+   return res;
+
+}
+
 
 // logic is correct but giving TLE
 
