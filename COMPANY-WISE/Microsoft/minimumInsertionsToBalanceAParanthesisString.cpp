@@ -59,6 +59,60 @@ public:
     }
 };
 
+
+// without using stack
+
+class Solution {
+public:
+    int minInsertions(string s) {
+        
+       // s+='*';
+
+        int n=s.length();
+
+        int openBrackets=0;
+        int res=0;
+        int openNeeded=0;
+        int closeNeeded=0;
+        
+
+        for(int i=0;i<n;i++)
+        {
+            if(s[i]=='(')
+            {
+                openBrackets++;
+            }
+            else if(s[i]==')')
+            {
+                if(i+1<n && s[i+1]==')')
+                {
+                    if(openBrackets>0)
+                    openBrackets--;
+
+                    else{
+                        openNeeded++;
+                    }
+                    i++;
+
+                }
+                else
+                {
+                    if(openBrackets>0)
+                    {
+                        closeNeeded++;
+                        openBrackets--;
+                    }
+                    else{
+                        openNeeded++;
+                        closeNeeded++;
+                    }
+                }
+            }
+        }
+        return 2*openBrackets+openNeeded+closeNeeded;
+    }
+};
+
 int main()
 {
     
