@@ -3,6 +3,8 @@
 using namespace std;
 
 
+// with stack 
+
 class Solution {
 public:
     int minAddToMakeValid(string s) {
@@ -35,6 +37,37 @@ public:
             stk.pop();
         }
         return res;
+    }
+};
+
+// without stack
+
+class Solution {
+public:
+    int minAddToMakeValid(string s) {
+        
+        int openBrackets=0;
+        int res=0;
+
+        int n=s.length();
+
+        for(int i=0;i<n;i++)
+        {
+            if(s[i]=='(')
+            {
+                openBrackets++;
+            }
+            else{
+                if(openBrackets>0)
+                {
+                    openBrackets--;
+                }
+                else{
+                    res++;
+                }
+            }
+        }
+        return res+openBrackets;
     }
 };
 
