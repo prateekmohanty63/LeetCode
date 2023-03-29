@@ -4,6 +4,41 @@
 using namespace std;
 
 
+
+// Time complexity: O(N^2)
+// space complexity: O(1)
+
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        
+        ListNode *temp=head;
+       
+
+        while(temp!=NULL && temp->next!=NULL)
+        {
+          ListNode *temp1=temp->next;
+
+          while(temp1!=NULL)
+          {
+              if(temp->val>temp1->val)
+              {
+                  int tp=temp->val;
+                  temp->val=temp1->val;
+                  temp1->val=tp;
+              }
+              temp1=temp1->next;
+          }
+          temp=temp->next;
+        }
+        return head;
+    }
+};
+
+
+// Time complexity: O(nlogn)
+// Space complexity: O(n)
+
 struct ListNode {
       int val;
       ListNode *next;
