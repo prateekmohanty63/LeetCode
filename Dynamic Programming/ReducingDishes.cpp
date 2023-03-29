@@ -5,6 +5,8 @@ using namespace std;
 
 // Reducing Dishes
 
+// DP solution 
+
 class Solution {
 public:
 
