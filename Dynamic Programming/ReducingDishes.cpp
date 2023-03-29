@@ -5,6 +5,46 @@ using namespace std;
 
 // Reducing Dishes
 
+// Greedy approach
+
+// Intution
+
+// 1. We start from the end of the array
+// 2. we need to understand that adding an element to the array essentially means value becoming sum of the all the elements + previous answer
+
+// We need to understand the basic concept that if an exra element is taken before the existing array, then the value of answer will increase by the value of element + sum of existing answer. The following example demonstrates this:
+// 1 getting added before existing array means that new value = old value + sum of elements
+
+// Hence we need to start from last elemnt taking sum and val both same, then move to last second element and so on. For each element we calculate possible value if the dishes considered start from that index and store the max value seen so far (see code for more clarity)
+
+class Solution {
+public:
+    int maxSatisfaction(vector<int>& satisfaction) {
+        
+        int n=satisfaction.size();
+
+        sort(satisfaction.begin(),satisfaction.end());
+
+        int sum=satisfaction[n-1];
+        int val=satisfaction[n-1];
+
+        int max=sum;
+
+        for(int i=n-2;i>=0;i--)
+        {
+            sum+=satisfaction[i];
+            val+=sum;
+
+            if(val>max)
+            max=val;
+        }
+
+        if(max<0)return 0;
+
+        return max;
+    }
+};
+
 // DP solution 
 
 class Solution {
