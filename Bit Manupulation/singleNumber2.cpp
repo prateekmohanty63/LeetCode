@@ -12,7 +12,10 @@ class Solution {
 public:
     int singleNumber(vector<int>& nums) {
         
+        // ones store all the elements occuring 1 time in the array
         int ones=0;
+
+        // twos store all the element occuring 2 times in the array
         int twos=0;
 
         for(auto it:nums)
