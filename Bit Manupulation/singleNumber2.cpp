@@ -4,6 +4,27 @@
 
 using namespace std;
 
+
+// Bit manipulation method
+// Time complexity: O(n)
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        
+        int ones=0;
+        int twos=0;
+
+        for(auto it:nums)
+        {
+            ones=(ones^it)&(~twos);
+            twos=(twos^it)&(~ones);
+        }
+
+        return ones;
+    }
+};
+
 // Bit manipulation method
 // Time complexity: O(n*32)
 class Solution {
