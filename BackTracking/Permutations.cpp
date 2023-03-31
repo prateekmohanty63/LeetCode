@@ -3,6 +3,9 @@
 using namespace std;
 
 
+// Time complexity: O(n!*n)
+// space complexity: O(n)
+
 class Solution {
 public:
    
