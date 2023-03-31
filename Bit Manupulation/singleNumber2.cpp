@@ -5,7 +5,7 @@
 using namespace std;
 
 // Bit manipulation method
-6// Time complexity: O(n*32)
+// Time complexity: O(n*32)
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
