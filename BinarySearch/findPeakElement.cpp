@@ -2,6 +2,8 @@
 #include<vector>
 using namespace std;
 
+// find peak element
+
 
 // Time complexity: O(logn)
 // method: binary search
