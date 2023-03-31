@@ -4,6 +4,8 @@
 
 using namespace std;
 
+// Bit manipulation method
+
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
