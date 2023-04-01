@@ -7,6 +7,56 @@ using namespace std;
 
 // Search in Rotated sorted array-2
 
+// Time complexity: O(logn)
+// space complexity: O(1)
+
+class Solution {
+public:
+    bool search(vector<int>& nums, int target) {
+        
+        int l=0;
+        int r=nums.size()-1;
+
+        while(l<=r)
+        {
+            int mid=l+(r-l)/2;
+
+            if(nums[mid]==target)return true;
+            
+            // dealing with duplicate elements
+            if((nums[l]==nums[mid]) && (nums[r]==nums[mid]))
+            {
+                l++;
+                r--;
+            }
+
+             // first half is sorted
+            else if(nums[l]<=nums[mid])
+            {
+                if(target>=nums[l] && target<nums[mid])
+                {
+                    r=mid-1;
+                }
+                else{
+                    l=mid+1;
+                }
+            }
+
+            // second half is sorted
+            else{
+                if(target>nums[mid] && target<=nums[r])
+                {
+                    l=mid+1;
+                }
+                else{
+                    r=mid-1;
+                }
+            }
+        }
+        return false;
+    }
+};
+
 
 // Time complexity: O(logn + n)
 // space complexity: O(n)
