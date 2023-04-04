@@ -4,6 +4,41 @@
 #include<climits>
 using namespace std;
 
+
+// greedy solution
+class Solution {
+public:
+    vector<int> partitionLabels(string s) {
+        
+        unordered_map<char,int>mp;
+
+        for(int i=0;i<s.length();i++)
+        {
+            mp[s[i]]=i;
+        }
+
+        vector<int>res;
+       
+       int prev=-1;
+       int maxPartition=0;
+
+       for(int i=0;i<s.length();i++)
+       {
+           maxPartition=max(maxPartition,mp[s[i]]);
+
+           if(maxPartition==i)
+           {
+               // hence all the element in the partition are covered
+               res.push_back(maxPartition-prev);
+               prev=maxPartition;
+           }
+       }
+
+        return res;
+    }
+};
+
+// recursive solution
 class Solution {
 public:
   
