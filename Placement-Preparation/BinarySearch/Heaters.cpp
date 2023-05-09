@@ -7,6 +7,66 @@ using namespace std;
 
 class Solution {
 public:
+   
+   int findClosest(vector<int>&heater,int target)
+   {
+       int left=0;
+       int right=heater.size();
+
+       if(target<=heater[0])return heater[0];
+
+       if(target>=heater[heater.size()-1])return heater[heater.size()-1];
+     
+        int mid=0;
+       while(left<right)
+       {
+           int mid=(left+right)/2;
+
+           if(heater[mid]==target)return heater[mid];
+
+           else if(target>heater[mid])
+           {
+             if(mid+1<heater.size() && target<heater[mid+1])
+             {
+                 if(abs(target-heater[mid])<abs(target-heater[mid+1]))return heater[mid];
+
+                 else heater[mid+1];
+             }
+               left=mid+1;
+           }
+           else{
+               
+               if(mid-1>=0 && target>heater[mid-1])
+               {
+                   if(abs(target-heater[mid])<abs(target-heater[mid-1]))return heater[mid];
+
+                   else return heater[mid-1];
+               }
+               right=mid;
+               
+           }
+       }
+       return heater[mid];
+   }
+
+    int findRadius(vector<int>& houses, vector<int>& heaters) {
+
+        int maximRadius=INT_MIN;
+       int n=houses.size(); 
+       sort(heaters.begin(),heaters.end());
+
+       for(int i=0;i<houses.size();i++)
+       {
+           int minEle=abs(houses[i]-findClosest(heaters,houses[i]));
+           maximRadius=max(maximRadius,minEle);
+       }
+       return maximRadius;
+    }
+};
+
+
+class Solution {
+public:
 
    int getNearestElement(vector<int>&arr, int n, int target) {
    if (target <= arr[0])
