@@ -3,6 +3,32 @@
 using namespace std;
 
 
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        
+        int n=matrix.size();
+        int m=matrix[0].size();
+
+        int start=0;
+        int end=matrix[0].size()-1;
+        
+        while(start<n && end>=0)
+        {
+            if(matrix[start][end]==target)return true;
+
+            if(target>matrix[start][m-1])start++;
+
+            else{
+                end--;
+            }
+        }
+         
+         return false;
+    }
+};
+
+
 // T(n)=O(nlogm)
 
 class Solution {
