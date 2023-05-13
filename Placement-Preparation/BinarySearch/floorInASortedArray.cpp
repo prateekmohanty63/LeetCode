@@ -14,8 +14,6 @@ class Solution{
     {
        int start=0;
        int end=n-1;
-       int closestEle=-1;
-       int closestDiff=INT_MAX;
        int closestInd=-1;
        
        while(start<=end)
@@ -26,50 +24,11 @@ class Solution{
            
            if(target>vec[mid])
            {
-               // checking mid+1
-               if(mid+1<n && target>=vec[mid+1])
-            {
-                    
-                if((target-vec[mid+1])<=closestDiff)
-                {
-                    closestDiff=target-vec[mid+1];
-                    closestEle=vec[mid+1];
-                    closestInd=mid+1;
-                }
-            }
-            // checking mid
-                if((target-vec[mid])<=closestDiff)
-                {
-                    closestDiff=target-vec[mid];
-                    closestEle=vec[mid];
-                    closestInd=mid;
-                }
-                
-            // checking mid-1
-            
-            if(mid-1>=0 && target>=vec[mid-1])
-            {
-                    
-                if((target-vec[mid-1])<=closestDiff)
-                {
-                    closestDiff=target-vec[mid-1];
-                    closestEle=vec[mid-1];
-                    closestInd=mid-1;
-                }
-            }
-                
+                closestInd=mid;
                start=mid+1;
            }
            else{
-               if(mid-1>=0 && target>=vec[mid-1])
-               {
-                   if((target-vec[mid-1])<=closestDiff)
-                   {
-                       closestDiff=target-vec[mid-1];
-                       closestEle=vec[mid-1];
-                       closestInd=mid-1;
-                   }
-               }
+              
                end=mid-1;
            }
        }
