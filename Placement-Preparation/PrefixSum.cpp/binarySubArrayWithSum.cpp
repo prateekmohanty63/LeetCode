@@ -3,6 +3,46 @@
 #include<unordered_map>
 using namespace std;
 
+// sliding window 
+class Solution {
+public:
+   
+   int almostSum(vector<int>&nums,int goal)
+   {
+       if(goal<0)return 0;
+       // this function calculates all subarrays with sum less than equal to goal
+
+       int start=0;
+       int end=0;
+       int n=nums.size();
+       int currSum=0;
+       int res=0;
+
+       while(end<n)
+       {
+           currSum+=nums[end];
+
+           while(currSum>goal)
+           {
+               currSum-=nums[start];
+               start++;
+           }
+           res+=(end-start+1);
+           end++;
+       }
+       return res;
+   }
+
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        
+        // all subarrays with sum less than equal to goal - all subarrays with sum less than equal to goal-1
+
+        return almostSum(nums,goal)-almostSum(nums,goal-1);
+    }
+};
+
+
+// using hashmap
 class Solution {
 public:
     int numSubarraysWithSum(vector<int>& nums, int goal) {
