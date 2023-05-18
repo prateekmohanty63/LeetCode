@@ -2,6 +2,36 @@
 #include<vector>
 using namespace std;
 
+
+// bottom-up 
+// T(n)=O(n)
+
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        
+      
+      int n=nums.size();
+      if(n==0)return 0;
+
+      vector<int>memo(n+1);
+      
+      memo[0]=0;
+      memo[1]=nums[0];
+
+      for(int i=1;i<n;i++)
+      {
+          int val=nums[i];
+          memo[i+1]=max(memo[i],memo[i-1]+val);
+      }
+      return memo[n];
+
+    }
+};
+
+// memoized (top-down)
+// Time complexity: O(n)
+
 class Solution {
 public:
    
