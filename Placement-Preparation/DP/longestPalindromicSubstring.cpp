@@ -4,6 +4,53 @@ using namespace std;
 
 class Solution {
 public:
+    string longestPalindrome(string s) {
+        
+        int n=s.length();
+        string res;
+        int max=0;
+
+        for(int i=0;i<n;i++)
+        {
+            int l=i;
+            int r=i;
+            
+            // odd length palindrome
+            while(l>=0 && r<n && s[l]==s[r])
+            {
+                if(r-l+1>max)
+                {
+                    max=r-l+1;
+                    res=s.substr(l,r-l+1);
+                }
+                l--;
+                r++;
+            }
+
+            // even length palindrome
+
+            l=i;
+            r=i+1;
+
+            while(l>=0 && r<n && s[l]==s[r])
+            {
+                 if(r-l+1>max)
+                {   
+                    max=r-l+1;
+                    res=s.substr(l,r-l+1);
+                }
+
+                l--;
+                r++;
+            }
+        }
+
+        return res;
+    }
+};
+
+class Solution {
+public:
    string res;
 
    bool isPali(string a,int start,int end)
