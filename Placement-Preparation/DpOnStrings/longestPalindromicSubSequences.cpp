@@ -1,6 +1,40 @@
 #include<iostream>
+#include<vector>
 #include<set>
 using namespace std;
+
+
+// T(n)=O(n*n)
+// s(n)=O(n*n)
+class Solution {
+public:
+   
+     int longestPalindSubseqRec(vector<vector<int> >& dp, string& s, int i, int j) {
+        if(i > j)
+            return 0;
+        // when one char
+        if(i == j)
+            return dp[i][j] = 1;
+        
+        if(dp[i][j] == -1) {
+            if(s[i] == s[j])
+                dp[i][j] = 2 + longestPalindSubseqRec(dp, s, i+1, j-1);
+            else
+                dp[i][j] = max(longestPalindSubseqRec(dp, s, i+1, j),
+                               longestPalindSubseqRec(dp, s, i, j-1));
+        }
+        return dp[i][j];
+    }
+
+    int longestPalindromeSubseq(string s) {
+        
+        int n=s.length();
+        string a=s;
+        //reverse(s.begin(),s.end());
+        vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
+        return longestPalindSubseqRec(dp,s,0,n-1);
+    }
+};
 
 
 // TLE 
