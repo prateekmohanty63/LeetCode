@@ -4,6 +4,62 @@
 #include<unordered_map>
 using namespace std;
 
+// TLE
+class Solution {
+public:
+
+
+    int maxim=INT_MIN;
+
+    int asciiValue(string a)
+    {
+        int res=0;
+        for(int i=0;i<a.length();i++)res+=int(a[i]);
+
+        return res;
+    }
+
+    int maxSubSequence(string s1,string s2,int i,int j,string res)
+    {
+        int n=s1.length();
+        int m=s2.length();
+
+        if(i>=n || j>=m)
+        {   
+            maxim=max(maxim,asciiValue(res));
+            return 0;
+        }
+
+        if(s1[i]==s2[j])
+        {
+          
+            return 1+maxSubSequence(s1,s2,i+1,j+1,res+s1[i]);
+        }
+        else{
+            return max(maxSubSequence(s1,s2,i+1,j,res),maxSubSequence(s1,s2,i,j+1,res));
+        }
+    }
+    int minimumDeleteSum(string s1, string s2) {
+        
+        
+        if(s1==s2)return 0;
+        set<string>vec1;
+
+       
+        
+        int a=maxSubSequence(s1,s2,0,0,"");
+
+        int b=asciiValue(s1);
+        int c=asciiValue(s2);
+
+
+        
+
+        return (b-maxim)+(c-maxim);
+
+    }
+};
+
 
 // TLE
 
