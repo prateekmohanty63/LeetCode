@@ -3,6 +3,10 @@
 
 using namespace std;
 
+
+// T(n)=O(n+2*e)
+// S(n)=O(n)
+
 // } Driver Code Ends
 class Solution {
   public:
