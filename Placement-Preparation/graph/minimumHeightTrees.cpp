@@ -6,6 +6,8 @@
 using namespace std;
 
 
+// T(n)=O(v*(v+e))
+// S(n)=O(v)
 class Solution {
 public:
     
