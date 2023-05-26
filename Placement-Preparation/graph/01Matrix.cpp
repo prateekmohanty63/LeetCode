@@ -2,7 +2,61 @@
 #include<vector>
 #include<climits>
 #include<algorithm>
+#include<queue>
 using namespace std;
+
+
+// BFS SOLUTION
+
+class Solution {
+public:
+  vector<vector<int>>dir={{0,1},{1,0},{-1,0},{0,-1}};
+  bool isValid(int i,int j,int m,int n)
+  {
+      if(i==m || j==n || i<0 || j<0)return false;
+
+      return true;
+  }
+  //vector<vector<int>>dir={{1,0},{0,1},{0,-1},{-1,0}};
+
+    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        queue<pair<int,int>>q;
+        int m=matrix.size();
+        int n=matrix[0].size();
+        vector<vector<int>>dis(m,vector<int>(n,-1));
+
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(matrix[i][j]==0)
+                {
+                    q.push({i,j});
+                    dis[i][j]=0;
+                }
+            }
+        }
+
+        while(!q.empty())
+        {
+            pair<int,int>pr=q.front();
+            q.pop();
+
+            for(int i=0;i<4;i++)
+            {
+                int a=pr.first+dir[i][0];
+                int b=pr.second+dir[i][1];
+
+                if(isValid(a,b,m,n) && dis[a][b]==-1)
+                {
+                  q.push({a,b});
+                  dis[a][b]=dis[pr.first][pr.second]+1;   
+                }
+            }
+        }
+        return dis;
+    }
+};
 
 
 // TLE
