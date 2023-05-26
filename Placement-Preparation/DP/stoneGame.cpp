@@ -2,6 +2,9 @@
 #include<vector>
 using namespace std;
 
+
+//  T(N)=O(start*end)
+// S(N)=O(start*end)
 class Solution {
 public:
 
