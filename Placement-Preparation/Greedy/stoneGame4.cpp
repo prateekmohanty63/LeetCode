@@ -3,6 +3,10 @@
 #include<climits>
 using namespace std;
 
+// TLE 
+// T(N)=O(n^2)
+// S(N)=O(1)
+
 class Solution {
 public:
     int stoneGameVI(vector<int>& aliceValues, vector<int>& bobValues) {
