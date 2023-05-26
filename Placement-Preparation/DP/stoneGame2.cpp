@@ -4,6 +4,9 @@
 #include<climits>
 using namespace std;
 
+// T(N)=O(2*n*n*M) {alice,i,M,inner for loop}
+// S(N)=O(2*n*n)  {alice,i,M}
+
 class Solution {
 public:
    
