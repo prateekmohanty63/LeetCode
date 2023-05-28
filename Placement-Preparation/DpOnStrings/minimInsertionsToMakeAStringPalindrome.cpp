@@ -4,6 +4,54 @@
 #include<vector>
 using namespace std;
 
+
+class Solution {
+public:
+  
+  int longestCommonSubSequence(string s,string srev)
+  {
+      int n=s.length();
+    
+      vector<vector<int>>bottomUp(n+1,vector<int>(n+1));
+
+      // initilization 
+      for(int i=0;i<n;i++)
+      {
+          bottomUp[0][i]=0;
+          bottomUp[i][0]=0;
+      }
+
+      for(int i=1;i<=n;i++)
+      {
+          for(int j=1;j<=n;j++)
+          {
+              if(s[i-1]==srev[j-1])
+              {
+                  bottomUp[i][j]=1+bottomUp[i-1][j-1];
+              }
+              else{
+                  bottomUp[i][j]=max(bottomUp[i-1][j],bottomUp[i][j-1]);
+              }
+          }
+      }
+      return bottomUp[n][n];
+      
+  }
+
+    int minInsertions(string s) {
+        
+        string a=s;
+        reverse(a.begin(),a.end());
+        int n=s.length();
+       
+
+        int longestSubSeq=longestCommonSubSequence(s,a);
+        cout<<longestSubSeq<<" ";
+
+        return a.length()-longestSubSeq;
+    }
+};
+
 class Solution {
 public:
   
