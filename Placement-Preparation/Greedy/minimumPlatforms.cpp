@@ -6,6 +6,7 @@
 using namespace std;
 
 
+// T(N)=O(N^2)
 
 // } Driver Code Ends
 class Solution{
