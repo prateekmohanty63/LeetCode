@@ -3,7 +3,74 @@
 #include<stack>
 #include<vector>
 #include<climits>
+#include<queue>
 using namespace std;
+
+
+// dijkstra algorithm
+
+class Solution {
+public:
+
+    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
+        
+        // building the adjacency matrix
+
+        unordered_map<int,vector<pair<int,int>>>adj;
+        vector<int>dist(n+1,INT_MAX);
+        vector<int>vis(n+1,0);
+        
+        for(int i=0;i<times.size();i++)
+        {
+             pair<int,int>pr;
+             pr.first=times[i][1];
+             pr.second=times[i][2];
+             adj[times[i][0]].push_back(pr);
+        }
+       
+         // dijkstra algorithm
+         // min heap of pairs
+         dist[k]=0;
+         priority_queue<pair<int,int>, vector<pair<int,int>> , greater<pair<int,int>>> pr;
+
+         pr.push(make_pair(0,k));
+
+         while(!pr.empty())
+         {
+             pair<int,int>p=pr.top();
+             pr.pop();
+             int topNode=p.second;
+             vis[topNode]=true;
+
+             for(int i=0;i<adj[topNode].size();i++)
+             {
+                int node=adj[topNode][i].first;
+                int cost=adj[topNode][i].second;
+
+                if(vis[node]==0 && dist[node]>dist[topNode]+cost)
+                {
+                    dist[node]=dist[topNode]+cost;
+
+                    // push the updated distance
+                    pr.push(make_pair(dist[node],node));
+                }
+             }
+         }
+
+    
+       int maxTime=INT_MIN;
+
+       for(int i=1;i<dist.size();i++){
+           cout<<dist[i]<<" ";
+           maxTime=max(maxTime,dist[i]);
+       }
+       if(maxTime==INT_MAX)return -1;
+      return maxTime;
+        
+    }
+};
+
+
 
 class Solution {
 public:
