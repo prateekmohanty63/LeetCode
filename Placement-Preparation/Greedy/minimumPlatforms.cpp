@@ -6,6 +6,38 @@
 using namespace std;
 
 
+int findPlatform(int arr[], int dep[], int n)
+    {
+    	// Your code here
+        
+        // sorting both the arrays
+        sort(arr,arr+n);
+        sort(dep,dep+n);
+        
+        int maxPlatForm=1;
+        int platFormNeeded=1;
+        
+        int i=1,j=0;
+        
+        while(i<n && j<n)
+        {
+            if(arr[i]>dep[j])
+            {
+                j++;
+                platFormNeeded--;
+            }
+            else{
+                platFormNeeded++;
+                i++;
+            }
+          
+            maxPlatForm=max(maxPlatForm,platFormNeeded);
+        }
+       
+       return maxPlatForm;
+    }
+
+
 // T(N)=O(N^2)
 
 // } Driver Code Ends
