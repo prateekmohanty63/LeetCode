@@ -87,7 +87,7 @@ public:
            unordered_map<string,double>mp=distmatrix[queries[i][0]];
            cout<<mp[queries[i][1]]<<" ";
           
-           else if(mp[queries[i][1]]==99999999999999 || mp[queries[i][1]]==0.0000000)
+           if(mp[queries[i][1]]==99999999999999 || mp[queries[i][1]]==0.0000000)
            {
                
                vec.push_back(-1.00000);
