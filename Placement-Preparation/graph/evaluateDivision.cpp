@@ -4,6 +4,77 @@
 #include<queue>
 using namespace std;
 
+// correct solution 
+// T(n)=O(N*(V+E))
+// S(N)=O(N*(V+E))
+class Solution {
+public:
+
+  double ans;
+
+  bool dfs(string src,string dest,unordered_map<string,vector<pair<string,double>>>&adj,double val,unordered_map<string,bool>&vis)
+  {
+      // if source is not present in the adj list we return false
+      if(adj.find(src)==adj.end())return false;
+       // base case
+       if(src==dest){
+           ans=val;
+           return true;
+       }
+
+        vis[src]=true;
+        bool tempAns=false;
+
+        for(int i=0;i<adj[src].size();i++)
+        {
+             string node=adj[src][i].first;
+             double cost=adj[src][i].second;
+
+             if(vis.find(node)==vis.end())
+             {
+                  tempAns=dfs(node,dest,adj,val*cost,vis);
+                  if(tempAns)break;
+             }
+        }
+       
+        return tempAns;
+  }
+    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries) {
+        
+        int m=queries.size();
+        vector<double>res;
+        
+        // building the adjacenecy matrix
+        unordered_map<string,vector<pair<string,double>>>adj;
+        for(int i=0;i<equations.size();i++)
+        {
+            pair<string,double>pr;
+            pr.first=equations[i][1];
+            pr.second=values[i];
+           adj[equations[i][0]].push_back(pr);
+
+           pair<string,double>pr1;
+           pr1.first=equations[i][0];
+           pr1.second=1/(double)values[i];
+           adj[equations[i][1]].push_back(pr1);
+        }
+
+        for(int i=0;i<m;i++)
+        {
+            unordered_map<string,bool>vis;
+            bool pathPresent=dfs(queries[i][0],queries[i][1],adj,1,vis);
+            cout<<pathPresent<<" ";
+            if(!pathPresent)res.push_back(-1);
+
+            else 
+            res.push_back(ans);
+        }
+
+        return res;
+    }
+};
+
+// giving error for 1 test case (dijkstra algorithm)
 class Solution {
 public:
     
