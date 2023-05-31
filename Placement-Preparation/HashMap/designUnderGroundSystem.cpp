@@ -3,6 +3,9 @@
 #include<vector>
 using namespace std;
 
+
+// TLE:O(N*Queries)
+
 class UndergroundSystem {
 public:
    
