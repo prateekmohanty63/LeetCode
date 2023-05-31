@@ -1,7 +1,56 @@
 #include<iostream>
 #include<unordered_map>
 #include<vector>
+#include<map>
 using namespace std;
+
+
+class UndergroundSystem {
+public:
+    map<int,pair<string,int>>checkInOrder;
+    map<pair<string,string>,pair<int,int>>avgTimeTaken;
+
+    UndergroundSystem() {
+       checkInOrder.clear();
+        avgTimeTaken.clear();
+    }
+    
+    void checkIn(int id, string stationName, int t) {
+        pair<string,int>pr;
+        pr.first=stationName;
+        pr.second=t;
+        checkInOrder[id]=pr;
+    }
+    
+    void checkOut(int id, string stationName, int t) {
+        // current station in which the user is present
+        string checkInStation=checkInOrder[id].first;
+        int CheckInTime=checkInOrder[id].second;
+
+        string checkOutStation=stationName;
+        int checkOutTime=t;
+
+        avgTimeTaken[{checkInStation,checkOutStation}].first+=checkOutTime-CheckInTime;
+        avgTimeTaken[{checkInStation,checkOutStation}].second++;
+    }
+    
+    double getAverageTime(string startStation, string endStation) {
+        
+        double timeTravel=avgTimeTaken[{startStation,endStation}].first;
+        double totalCount=avgTimeTaken[{startStation,endStation}].second;
+        double res=timeTravel/(double)totalCount;
+
+        return res;
+    }
+};
+
+/**
+ * Your UndergroundSystem object will be instantiated and called as such:
+ * UndergroundSystem* obj = new UndergroundSystem();
+ * obj->checkIn(id,stationName,t);
+ * obj->checkOut(id,stationName,t);
+ * double param_3 = obj->getAverageTime(startStation,endStation);
+ */
 
 
 // TLE:O(N*Queries)
