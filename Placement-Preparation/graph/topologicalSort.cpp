@@ -1,9 +1,101 @@
 #include<iostream>
 #include<vector>
 #include<stack>
+#include<unordered_map>
+#include<queue>
+#include<algorithm>
 using namespace std;
 
 
+// BFS
+
+class Solution {
+public:
+ 
+    bool isCyclic(int start,unordered_map<int,bool>&dfsVis,unordered_map<int,vector<int>>&adj,unordered_map<int,bool>&vis)
+   {
+         vis[start]=true;
+         dfsVis[start]=true;
+
+         for(auto it:adj[start])
+         {
+             // if node not yet visited 
+             if(vis.find(it)==vis.end())
+             {
+                 if(isCyclic(it,dfsVis,adj,vis))return true;
+             }
+             else{
+                 if(dfsVis[it]==true)return true;
+             }
+         }
+         dfsVis[start]=false;
+
+         return false;
+   }
+
+    vector<int> findOrder(int numCourses, vector<vector<int>>& pre) {
+        
+        vector<int>res;
+        
+        vector<int>indegree(numCourses,0);
+
+        unordered_map<int,vector<int>>adj;
+        for(int i=0;i<pre.size();i++)
+        {
+            adj[pre[i][0]].push_back(pre[i][1]);
+        }
+
+        unordered_map<int,bool>vis,dfsVis;
+
+        for(int i=0;i<numCourses;i++)
+        {
+            if(vis.find(i)==vis.end())
+            {
+                if(isCyclic(i,dfsVis,adj,vis)==true)return {};
+            }
+        }
+
+    // Topological sort using BFS (Kahn's algorithm)
+       // calculating in-degree
+        for(auto it:adj)
+        {
+            for(int i=0;i<it.second.size();i++)
+            {
+                indegree[it.second[i]]++;
+            }
+        }
+
+        // take a queue
+        // push all elements with in-degree 0
+        queue<int>q;
+
+        for(int i=0;i<indegree.size();i++)
+        {
+            if(indegree[i]==0)q.push(i);
+        }
+        
+        while(!q.empty())
+        {
+            int fr=q.front();
+            q.pop();
+            res.push_back(fr);
+
+            // push the element into result vector
+            for(auto it:adj[fr])
+            {
+                indegree[it]--;
+
+                if(indegree[it]==0)q.push(it);
+            }
+        }
+
+       reverse(res.begin(),res.end());
+        return res;
+    }
+};
+
+
+// DFS 
 
 // } Driver Code Ends
 class Solution

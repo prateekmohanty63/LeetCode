@@ -4,8 +4,40 @@
 using namespace std;
 
 
+
+void BFS(vector<int> adj[], int s, bool visited[]) { 	
+    queue<int>  q;
+	visited[s] = true; 
+	q.push(s); 
+	while(q.empty()==false) { 
+		int u = q.front(); 
+		q.pop();
+		cout << u << " "; 
+		 
+		for(int v:adj[u])
+		    if(visited[v]==false){
+		        visited[v]=true;
+		        q.push(v);
+		    }
+	} 
+}
+
+void BFSDin(vector<int> adj[], int V){
+    bool visited[V]; 
+	for(int i = 0; i<V; i++) 
+		visited[i] = false;
+		
+    for(int i=0; i<V; i++){
+        if(visited[i]==false)
+            BFS(adj,i,visited);
+    }
+}
+
+
+
 // T(N)=O(N)+O(2*E)
 // S(N)=O(3N) + O(N)
+
 
 // } Driver Code Ends
 class Solution {
