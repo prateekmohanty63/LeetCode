@@ -2,7 +2,7 @@
 #include<vector>
 #include<climits>
 #include<algorithm>
-#include<priority_queue>
+#include<queue>
 using namespace std;
 
 
