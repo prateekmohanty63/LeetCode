@@ -3,6 +3,9 @@
 #include<queue>
 using namespace std;
 
+
+// T(N)=O(V*(log(v)+8*log(v)))
+
 class Solution {
 public:
    
@@ -22,9 +25,9 @@ public:
        // storing all the 8 directions for easier traversal
        vector<vector<int>>directions={{1,0},{-1,0},{0,-1},{0,1},{-1,-1},{-1,1},{1,-1},{1,1}};
 
-       while(!pr.empty())
+       while(!pr.empty())     // <- O(V)
        {
-            pair<int,pair<int,int>>fr=pr.front();
+            pair<int,pair<int,int>>fr=pr.front();     // <- log(V)
             pr.pop();
 
             int currCost=fr.first;
@@ -38,7 +41,7 @@ public:
             // mark the cell as visited
             grid[i][j]=1;
 
-            for(int k=0;k<8;k++)
+            for(int k=0;k<8;k++)        // <- O(8)
             {
                 // cout<<"IN";
                 int nextI=i+directions[k][0];
@@ -49,7 +52,7 @@ public:
                 if(nextI>=0 && nextI<n && nextJ>=0 && nextJ<n && grid[nextI][nextJ]==0)
                 {   
                       grid[nextI][nextJ]=1;
-                      pr.push({currCost+1,{nextI,nextJ}});
+                      pr.push({currCost+1,{nextI,nextJ}});       // <- log(v)
                 }
             }
 
