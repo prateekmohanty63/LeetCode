@@ -4,6 +4,9 @@
 #include<queue>
 using namespace std;
 
+
+// T(N)= n*(26*m)
+
 class Solution {
 public:
     
@@ -22,7 +25,7 @@ public:
          vis[beginWord]=true;
 
          // performing the bfs
-         while(!q.empty())
+         while(!q.empty())        // <- O(N)
          {
              pair<string,int>fr=q.front();
              q.pop();
@@ -34,9 +37,9 @@ public:
              if(currString==endWord)return currCost;
 
              // changing the strands in the word
-             for(auto it:vec)
+             for(auto it:vec)             // <- O(26)
              {
-                 for(int i=0;i<n;i++)
+                 for(int i=0;i<n;i++)     // <- O(n)
                  {
                      string a=currString;
                      if(a[i]!=it)
@@ -46,7 +49,7 @@ public:
                          if(mp.find(a)!=mp.end() && vis.find(a)==vis.end())
                          {
                              vis[a]=true;
-                             q.push({a,currCost+1});
+                             q.push({a,currCost+1});        // <- O(1)
                          } 
                      }
                  }
