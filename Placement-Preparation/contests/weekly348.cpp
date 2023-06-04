@@ -56,6 +56,58 @@ public:
     }
 };
 
+
+// 3. Sum of Matrix After Queries
+
+class Solution {
+public:
+    long long matrixSumQueries(int n, vector<vector<int>>& queries) {
+        
+        long long sum=0;
+        
+        unordered_map<int,bool>colTaken,rowTaken;
+        
+        int rowLeft=n;
+        int colLeft=n;
+        
+        // we start from behind , as the value inserted in any row or column will be be final value of that row or column from the end
+        
+        for(int i=queries.size()-1;i>=0;i--)
+        {
+            int type=queries[i][0];
+            int index=queries[i][1];
+            int val=queries[i][2];
+            
+            if(type==0)
+            {
+                if(rowTaken.find(index)==rowTaken.end()){
+
+                sum+=(rowLeft*val);
+                rowTaken[index]=true;
+                
+                // we decrement the column-left value 
+                    colLeft--;
+            }
+         }
+            else{
+                
+                if(colTaken.find(index)==colTaken.end())
+                {
+                    sum+=(colLeft*val);
+                    colTaken[index]=true;
+                    
+                    // we decrement the row-left value
+                    rowLeft--;
+                }
+                
+            }
+        }
+        return sum;
+    }
+};
+
+
+
 int main()
 {
     
