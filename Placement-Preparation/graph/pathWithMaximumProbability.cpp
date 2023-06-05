@@ -4,6 +4,9 @@
 #include<queue>
 using namespace std;
 
+
+// T(N)=O(V*(log(v)+E*log(v)))
+
 class Solution {
 public:
   
@@ -27,11 +30,11 @@ public:
 
 
       // BFS
-
-      while(!q.empty())
+ 
+      while(!q.empty())          // O(V)
       {
           pair<double,int>fr=q.top();
-          q.pop();
+          q.pop();                    // O(logV)
           int parentNode=fr.second;
           double currProb=fr.first;
           vis[parentNode]=1;
@@ -40,7 +43,7 @@ public:
           
          // if(parentNode==end)return currProb;
 
-          for(auto it:adj[parentNode])
+          for(auto it:adj[parentNode])          // O(E)
           {
               int childNode=it.first;
               double childProb=it.second;
@@ -49,7 +52,7 @@ public:
               {
                     
                     dist[childNode]=currProb*childProb;
-                    q.push({dist[childNode],childNode});
+                    q.push({dist[childNode],childNode});   // O(logv)
               }
           }
 
