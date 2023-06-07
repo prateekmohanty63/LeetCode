@@ -3,9 +3,40 @@
 #include<cmath>
 #include<climits>
 #include<unordered_map>
+#include<unordered_set>
+#include<queue>
 using namespace std;
 
+// BFS 
+ int BFS(int u, unordered_map<int, vector<int>> &adj) {
+        unordered_set<int> visited;
+        queue<int> que;
+        que.push(u);
+        visited.insert(u);
 
+        while(!que.empty()) {
+            
+            int temp = que.front();
+            que.pop();
+            
+            for(int &v : adj[temp]) {
+                
+                if(visited.find(v) == visited.end()) {
+                    que.push(v);
+                    visited.insert(v);
+                }
+                
+            }
+            
+            
+        }
+        
+        return visited.size();
+    }
+
+
+
+// DFS 
 class Solution {
 public:
     
