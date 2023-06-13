@@ -5,7 +5,7 @@ using namespace std;
 class Solution {
 public:
 
-   int partition(vector<int>&vec,int s,int e)
+   int partition(vector<int>&vec,int s,int e)     // O(N)
    {
        // choosing the pivot element
 
