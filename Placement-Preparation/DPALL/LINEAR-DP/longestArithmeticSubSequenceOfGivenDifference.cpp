@@ -4,6 +4,10 @@
 #include<climits>
 using namespace std;
 
+
+// T(N)=O(N^2)
+// S(N)=O(N)
+
 class Solution {
 public:
     int longestSubsequence(vector<int>& arr, int difference) {
