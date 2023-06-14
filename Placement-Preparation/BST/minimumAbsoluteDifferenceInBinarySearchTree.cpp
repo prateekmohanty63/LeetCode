@@ -4,6 +4,36 @@
 using namespace std;
 
 
+// without using extra space
+
+class Solution {
+public:
+  
+  int inOrderTraversal(TreeNode *root,int &prevEle,int &min_diff)
+  {
+     if(root->left!=NULL)
+     inOrderTraversal(root->left,prevEle,min_diff);
+     
+     if(prevEle!=-1)
+     min_diff=min(min_diff,abs(prevEle-root->val));
+     prevEle=root->val;
+     
+     if(root->right!=NULL)
+     inOrderTraversal(root->right,prevEle,min_diff);
+
+     return min_diff;
+  }
+
+    int getMinimumDifference(TreeNode* root) {
+        
+        int min_diff=INT_MAX;
+        int prevEle=-1;
+
+        return inOrderTraversal(root,prevEle,min_diff);
+    }
+};
+
+
  // Definition for a binary tree node.
   struct TreeNode {
      int val;
