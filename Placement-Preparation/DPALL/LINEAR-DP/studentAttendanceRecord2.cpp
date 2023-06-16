@@ -3,6 +3,47 @@
 #include<unordered_map>
 using namespace std;
 
+
+class Solution {
+public:
+    int mod=1e9+7;
+   long long solve(int n,int late,int absent,vector<vector<vector<long long>>>&dp)
+   {
+       // base case
+       if(n==0)return 1;
+
+       if(dp[n][late][absent]!=-1)return dp[n][late][absent];
+
+       long long ans=0;
+
+       if(absent==1)
+       {
+           // he can be absent atmost 1 day
+           // if last char is absent , then late gets reset
+           ans+=solve(n-1,2,absent-1,dp)%mod;
+       }
+
+       if(late>0){
+           ans+=solve(n-1,late-1,absent,dp)%mod;
+       }
+
+       // if present , late gets reset
+       // absent remains same
+       ans+=solve(n-1,2,absent,dp)%mod;
+
+       return dp[n][late][absent]=ans%mod;
+
+
+   }
+    int checkRecord(int n) {
+        
+        vector<vector<vector<long long>>>dp(n+1,vector<vector<long long>>(3,vector<long long>(2,-1)));
+        return solve(n,2,1,dp);
+    }
+};
+
+
+// T(N)=O(n^2)
 class Solution {
 public:
     vector<string>vec;
