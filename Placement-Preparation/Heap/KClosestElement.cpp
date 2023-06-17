@@ -16,7 +16,7 @@ public:
 
         // pushing all the elements along with difference in the heap
 
-        for(int i=0;i<n;i++)
+        for(int i=0;i<n;i++)     // O(NLOGN)
         {
             pair<int,int>p;
             int diff=abs(x-arr[i]);
@@ -27,7 +27,7 @@ public:
             pr.push(p);
         }
 
-        while(!pr.empty() && k!=0)
+        while(!pr.empty() && k!=0)        //  O(NLOGN)
         {
             pair<int,int>fr=pr.top();
             res.push_back(fr.second);
