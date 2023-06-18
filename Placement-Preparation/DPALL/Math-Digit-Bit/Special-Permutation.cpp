@@ -3,6 +3,11 @@
 
 using namespace std;
 
+// prevIndex can take n values
+// mask can take 2^14 values at max // The function solve has a nested loop that iterates over the elements of nums and checks the conditions.
+
+// hence  T(N)=O(n*2^n)
+
 class Solution {
 public:
     int mod=1000000007;
@@ -21,7 +26,7 @@ public:
         
         int ans=0;
         
-        for(int j=0;j<n;j++)
+        for(int j=0;j<n;j++)              // O(N)
         {
             // check if the element at the current index is already included
             if((mask & (1<<j))>0)
