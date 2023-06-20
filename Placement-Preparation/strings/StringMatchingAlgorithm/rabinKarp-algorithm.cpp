@@ -15,6 +15,8 @@ using namespace std;
 
 // hence let the hash function be value(digit)*10^m-i
 
+// this type of hashing function is called rabin finger-print function
+
 int main()
 {
     unordered_map<char, int> mp;
