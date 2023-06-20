@@ -2,6 +2,8 @@
 #include<unordered_map>
 using namespace std;
 
+// rabin  karp with basic hashing function 
+
 class Solution {
 public:
     bool solve(string a,string b)
