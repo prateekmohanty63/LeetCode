@@ -1,89 +1,130 @@
-// C++ program for implementation of KMP pattern searching
-// algorithm
+#include<iostream>
+#include<vector>
+#include<unordered_map>
 
-#include <bits/stdc++.h>
+using namespace std;
 
-void computeLPSArray(char* pat, int M, int* lps);
 
-// Prints occurrences of txt[] in pat[]
-void KMPSearch(char* pat, char* txt)
+// KMP in leetcode (accepted)
+
+class Solution {
+public:
+    vector<int> preFix(string a)
+    {
+        int n=a.size();
+        vector<int>preFixArr(n,0);
+
+        for(int i=1;i<n;i++)
+        {
+            int j=preFixArr[i-1];
+
+            while(j>0 && a[i]!=a[j])j=preFixArr[j-1];
+
+            if(a[i]==a[j])j++;
+
+            preFixArr[i]=j;
+        }
+        return preFixArr;
+    }
+
+    int kmp(string input,string pattern)
+    {
+        int pos=-1;
+        int n=input.length();
+        int m=pattern.length();
+
+        int i=0,j=0;
+
+        vector<int>pre=preFix(pattern);
+
+        while(i<n)
+        {
+            if(input[i]==pattern[j])
+            {
+                i++;
+                j++;
+            }
+            else{
+                if(j!=0)j=pre[j-1];
+
+                else i++;
+            }
+
+            if(j==m)
+            {
+                // match found
+                pos=i-pattern.size();
+                break;
+            }
+        }
+        return pos;
+    }
+    int strStr(string haystack, string needle) {
+
+        if(haystack==needle)return 0;
+
+        return kmp(haystack,needle);
+
+
+    }
+};
+
+vector<int> prefix_function(string s)
 {
-	int M = strlen(pat);
-	int N = strlen(txt);
+	int n=s.size();
+	vector<int>pi(n,0);
 
-	// create lps[] that will hold the longest prefix suffix
-	// values for pattern
-	int lps[M];
+	for(int i=1;i<n;i++){
+		int j=pi[i-1];
 
-	// Preprocess the pattern (calculate lps[] array)
-	computeLPSArray(pat, M, lps);
+		while(j>0 && s[i]!=s[j])j=pi[j-1];
+        
+		// s[0..i-1]=ab..ab 
+		// pi[i-1]=2
+		// s[0..i]=abc.abc
+		// pi[i]=j++
+		if(s[i]==s[j])j++;
 
-	int i = 0; // index for txt[]
-	int j = 0; // index for pat[]
-	while ((N - i) >= (M - j)) {
-		if (pat[j] == txt[i]) {
+		pi[i]=j;
+	}
+    
+	// Time complexity = O(n)
+	return pi;
+}
+
+int main()
+{   
+
+	string pattern="abcabcd";
+
+	vector<int>prefix=prefix_function(pattern);
+
+	for(auto it:prefix)cout<<it<<" ";
+
+	cout<<endl;
+
+	// now we can implement the actual algo
+    
+	string inp="abcerdadaabcabcd";
+
+	int pos=-1;
+	int i=0,j=0;
+
+	while(i<inp.size()){
+		if(inp[i]==pattern[j]){
 			j++;
 			i++;
 		}
+		else{
+			if(j!=0)j=prefix[j-1];
 
-		if (j == M) {
-			printf("Found pattern at index %d ", i - j);
-			j = lps[j - 1];
+			else i++;
 		}
-
-		// mismatch after j matches
-		else if (i < N && pat[j] != txt[i]) {
-			// Do not match lps[0..lps[j-1]] characters,
-			// they will match anyway
-			if (j != 0)
-				j = lps[j - 1];
-			else
-				i = i + 1;
+		if(j==pattern.size()){
+			pos=i-pattern.size();
+			break;
 		}
 	}
-}
-
-// Fills lps[] for given pattern pat[0..M-1]
-void computeLPSArray(char* pat, int M, int* lps)
-{
-	// length of the previous longest prefix suffix
-	int len = 0;
-
-	lps[0] = 0; // lps[0] is always 0
-
-	// the loop calculates lps[i] for i = 1 to M-1
-	int i = 1;
-	while (i < M) {
-		if (pat[i] == pat[len]) {
-			len++;
-			lps[i] = len;
-			i++;
-		}
-		else // (pat[i] != pat[len])
-		{
-			// This is tricky. Consider the example.
-			// AAACAAAA and i = 7. The idea is similar
-			// to search step.
-			if (len != 0) {
-				len = lps[len - 1];
-
-				// Also, note that we do not increment
-				// i here
-			}
-			else // if (len == 0)
-			{
-				lps[i] = 0;
-				i++;
-			}
-		}
-	}
-}
-
-// Driver code
-int main()
-{
-	char txt[] = "ABABDABACDABABCABAB";
-	char pat[] = "ABABCABAB";
-	KMPSearch(pat, txt);
+   cout<<"Found at index: "<<" "<<pos;
 	return 0;
 }
