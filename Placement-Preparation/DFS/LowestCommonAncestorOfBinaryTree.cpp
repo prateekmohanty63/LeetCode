@@ -12,6 +12,8 @@ using namespace std;
   };
  
 
+// T(N)=O(N^2)
+// S(N)=O(N^2)
 class Solution {
 public:
     vector<vector<TreeNode*>>res;
