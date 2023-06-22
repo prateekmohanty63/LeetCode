@@ -1,6 +1,8 @@
 #include<iostream>
 using namespace std;
 
+ // unique approach (check video once)
+
 
  // Definition for a binary tree node.
   struct TreeNode {
@@ -12,7 +14,7 @@ using namespace std;
       TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
   };
  
- 
+
 class Solution {
 public:
     TreeNode *prev=NULL;
