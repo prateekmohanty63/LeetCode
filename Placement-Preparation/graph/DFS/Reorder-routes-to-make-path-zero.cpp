@@ -1,7 +1,10 @@
+
 #include<iostream>
-#include<vector>
 #include<unordered_map>
+#include<vector>
 using namespace std;
+
+
 
 class Solution {
 public:
@@ -20,6 +23,9 @@ public:
           int original=pr.second;
 
           if(vis[node]==0){
+              // if the edge is original , which means that this node can be reached by 0
+              // becuase it was originally a directed graph , other-side node was not possible
+              // hence this is a node going away from 0 (target)
         if(original==1)count++;
           
           vis[node]=1;
@@ -53,6 +59,7 @@ public:
         return count;
     }
 };
+
 
 int main()
 {
