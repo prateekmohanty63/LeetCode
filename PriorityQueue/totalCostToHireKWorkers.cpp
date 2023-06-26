@@ -3,6 +3,10 @@
 #include<queue>
 using namespace std;
 
+
+// T(N)=O(k*(log(candidates)))
+// S(N)=O(2*candidates)
+
 class Solution {
 public:
     long long totalCost(vector<int>& costs, int k, int candidates) {
@@ -31,10 +35,10 @@ public:
         end++;
         cout<<start<<" "<<end<<endl;
 
-        while(k!=0)
+        while(k!=0)                         // O(K)
         {
             pair<int,pair<int,string>>tp=pq.top();
-            pq.pop();
+            pq.pop();                       // O(log(candidates))
             int val=tp.first;
             int index=tp.second.first;
             string str=tp.second.second;
@@ -57,7 +61,7 @@ public:
                    
                    if(end-1!=start){
                     end--;
-                    pq.push({costs[end],{end,"end"}});
+                    pq.push({costs[end],{end,"end"}});       // O(log(candidates))
                    }
                     
                 }
