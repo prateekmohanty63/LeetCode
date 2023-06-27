@@ -12,6 +12,8 @@ using namespace std;
       ListNode(int x, ListNode *next) : val(x), next(next) {}
   };
  
+ // T(N)=O(N)
+ // S(N)=O(N)
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
