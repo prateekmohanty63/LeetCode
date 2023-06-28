@@ -2,8 +2,8 @@
 using namespace std;
 
 
-// T(N)=O(N+M)
-// S(N)=O(1)
+// T(N)=O(n+m)
+// S(N)=O(n+m)
 
  // Definition for singly-linked list.
   struct ListNode {
