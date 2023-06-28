@@ -11,6 +11,9 @@ using namespace std;
       ListNode(int x, ListNode *next) : val(x), next(next) {}
   };
  
+
+ // T(N)=O(n)
+ // S(n)=O(1)
  
 class Solution {
 public:
