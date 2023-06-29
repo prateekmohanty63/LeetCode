@@ -10,6 +10,10 @@ using namespace std;
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+// T(n)=O(2m)
+// S(n)=O(1)
+
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
