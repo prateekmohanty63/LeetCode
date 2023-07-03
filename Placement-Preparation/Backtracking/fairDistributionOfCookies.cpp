@@ -4,10 +4,10 @@
 using namespace std;
 
 // T(N)=O(k^n)
-// TLE
+
 class Solution {
 public:
-    int solve(vector<int>&cookies,int k,int index,vector<int>noCookies)
+    int solve(vector<int>&cookies,int k,int index,vector<int>&noCookies)
     {
         // base case
         int n=cookies.size();
@@ -37,6 +37,48 @@ public:
          
          vector<int>noCookies(k,0);
          int res=solve(cookies,k,0,noCookies);
+
+         return res;
+
+    }
+};
+
+// T(N)=O(K^n)
+class Solution {
+public:
+   int res=INT_MAX;
+
+    void solve(vector<int>&cookies,int k,int index,vector<int>&noCookies)
+    {
+        // base case
+        int n=cookies.size();
+
+        if(index>=n)
+        {
+            int maxim=INT_MIN;
+            for(auto it:noCookies)maxim=max(maxim,it);
+            
+            res=min(res,maxim);
+
+            return ;
+           
+        }
+        
+        for(int i=0;i<k;i++)
+        {
+            noCookies[i]+=cookies[index];
+            // now we gave to ith child and explored all the possibility
+            solve(cookies,k,index+1,noCookies);
+            // now suppose we give i+1 th child instead of ith child
+            noCookies[i]-=cookies[index];
+
+        }
+        
+    }
+    int distributeCookies(vector<int>& cookies, int k) {
+         
+         vector<int>noCookies(k,0);
+         solve(cookies,k,0,noCookies);
 
          return res;
 
