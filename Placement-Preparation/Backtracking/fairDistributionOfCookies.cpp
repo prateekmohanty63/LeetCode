@@ -3,6 +3,8 @@
 #include<climits>
 using namespace std;
 
+// T(N)=O(k^n)
+// TLE
 class Solution {
 public:
     int solve(vector<int>&cookies,int k,int index,vector<int>noCookies)
