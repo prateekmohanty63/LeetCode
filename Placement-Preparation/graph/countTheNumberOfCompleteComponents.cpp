@@ -3,11 +3,13 @@
 #include<vector>
 using namespace std;
 
+// T(N)=O(N)
+// S(N)=O(N)
 class Solution {
 public:
     int count=0;
     int edg=0;
-    void solve(int n,int src,unordered_map<int,vector<int>>&adj,vector<int>&vis)
+    void solve(int n,int src,unordered_map<int,vector<int>>&adj,vector<int>&vis)   // O(n)
     {
         vis[src]=1;
         edg+=adj[src].size();
