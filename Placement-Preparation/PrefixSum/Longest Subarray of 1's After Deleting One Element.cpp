@@ -3,6 +3,9 @@
 using namespace std;
 
 
+// T(N)=O(N)
+// S(N)=O(N)
+
 class Solution {
 public:
     int longestSubarray(vector<int>& nums) {
