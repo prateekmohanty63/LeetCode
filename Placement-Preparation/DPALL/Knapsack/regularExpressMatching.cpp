@@ -24,7 +24,8 @@ public:
        // bool ans=false;
 
         bool match=(i<n && (s[i]==p[j] || p[j]=='.'));
-
+       
+       // NOTE we are checking for * first , because * has the highest precedence
         if(j+1<m && p[j+1]=='*')
         {
              // we have 2 choices here
