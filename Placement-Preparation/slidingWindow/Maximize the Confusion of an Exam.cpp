@@ -2,6 +2,9 @@
 #include<climits>
 using namespace std;
 
+// T(N)=O(N)
+// S(N)=O(1)
+
 class Solution {
 public:
     int maxConsecutiveAnswers(string answerKey, int k) {
