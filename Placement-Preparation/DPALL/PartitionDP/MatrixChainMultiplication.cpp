@@ -5,7 +5,7 @@
 using namespace std;
 
 
-// T(N)=O(N^2)
+// T(N)=O(N^2*N) (the N is multipled for the loop running inside the function) = O(N^3)
 // S(N)=O(N^2)
 
 class Solution{
@@ -19,7 +19,7 @@ public:
         
         if(dp[i][j]!=-1)return dp[i][j];
         
-        for(int k=i;k<j;k++)
+        for(int k=i;k<j;k++)    //  ~ O(N)
         {
            int steps=arr[i-1]*arr[k]*arr[j]+solve(i,k,arr,dp)+solve(k+1,j,arr,dp);   
            minim=min(minim,steps);
