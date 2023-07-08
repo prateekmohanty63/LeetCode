@@ -19,14 +19,15 @@ class Shape {
         height=h;
        }
 
-       virtual double calculateArea()=0; // Pure virtual function
-
+        virtual double calculateArea()=0; // Pure virtual function
+    
        void displayInfo()
        {
           cout<<"Width: "<<width<<endl;
           cout<<"Height: "<<height<<endl;
           cout<<"Area: "<<calculateArea()<<endl;
        }
+       
 
 
 };
@@ -63,6 +64,7 @@ class Triangle: public Shape{
 int main()
 {
     // creating objects
+   
     Rectangle rectangle(4.5,6.2);
     Triangle triangle(3.9,5.1);
 
