@@ -13,6 +13,38 @@ using namespace std;
       TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
   };
 
+struct Node
+{
+    int data;
+    Node* left, * right;
+}; 
+
+// T(N)=O(n)
+// S(N)=O(h)
+pair<bool,int> isSumTreeFast(Node* root)
+    {
+        // base case
+        if(!root)return {true,0};
+        
+        if(!root->left && !root->right)return {true,root->data};
+        
+        pair<bool,int>left=isSumTreeFast(root->left);
+        pair<bool,int>right=isSumTreeFast(root->right);
+        
+        // checking the condition in the current node
+        bool isSame=(left.second+right.second==root->data);
+        pair<bool,int>ans;
+        ans.first=(isSame && left.first && right.first);
+        ans.second=left.second+right.second+root->data;
+        return ans;
+    }
+    bool isSumTree(Node* root)
+    {
+         // Your code here
+        return isSumTreeFast(root).first;
+    }
+
+
 // T(N)=O(N)
 // S(N)=O(H) = O(N) (skewed tree)
   pair<bool,int> isBalancedFast(TreeNode* root)
