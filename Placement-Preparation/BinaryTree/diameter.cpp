@@ -23,8 +23,34 @@ struct Node
     }
 }; 
 
-// T(N)=O(N^2)
+// T(N)=O(N)
+// S(N)=O(N)
 
+pair<int,int> diameterFast(Node* root)
+    {
+        // base case
+        if(!root)
+        {  
+            // diameter , height
+            return {0,0};
+        }
+        
+        pair<int,int>left=diameterFast(root->left);
+        pair<int,int>right=diameterFast(root->right);
+        
+        int op1=left.first;
+        int op2=right.first;
+        int op3=left.second+1+right.second;
+        pair<int,int>ans;
+        ans.first=max({op1,op2,op3});
+        ans.second=max(left.second,right.second)+1;
+        
+        return ans;
+        
+    }
+
+// T(N)=O(N^2)
+// S(N)=O(N^2)
 
 class Solution {
   public:
