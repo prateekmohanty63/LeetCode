@@ -50,7 +50,7 @@ pair<int,int> diameterFast(Node* root)
     }
 
 // T(N)=O(N^2)
-// S(N)=O(N^2)
+// S(N)=O(h)
 
 class Solution {
   public:
