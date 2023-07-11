@@ -34,6 +34,9 @@ struct Node
 };
  */
 
+// T(N)=O(N)
+// S(N)=O(H)
+
 class Solution
 {
     public:
