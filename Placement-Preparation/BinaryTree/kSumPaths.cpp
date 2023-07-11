@@ -4,6 +4,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+// T(N)=O(N)
+// S(N)=O(H)
+class Solution{
+  public:
+  
+   void solve(Node *root,int &k,int &count,unordered_map<int,int>&mp,int sum)
+   {
+       // base case
+       if(!root)return ;
+       
+       sum+=root->data;
+       
+       count+=mp[sum-k];
+       if(sum==k)count++;
+       
+       mp[sum]++;
+       
+       solve(root->left,k,count,mp,sum);
+       solve(root->right,k,count,mp,sum);
+       
+       mp[sum]--;
+   }
+    int sumK(Node *root,int k)
+    {
+        // code here 
+      unordered_map<int,int>path;
+        int res=0;
+        solve(root,k,res,path,0);
+        
+        return res;
+    
+    }
+};
+
+
 struct Node 
 {
     int data;
@@ -33,6 +69,9 @@ struct Node
     }
 };
 */
+
+// T(N)=O(N^2)
+// S(N)=O(H)
 class Solution{
   public:
     void solve(Node* root,int &k,int sum,int &count)
