@@ -14,6 +14,7 @@ using namespace std;
       TreeNode(int x) : val(x), left(NULL), right(NULL) {}
   };
 
+// Way to convert tree into un-directed tree or graph
 // T(N)=O(N)
 // S(N)=O(N)
  
