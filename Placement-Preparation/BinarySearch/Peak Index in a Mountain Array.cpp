@@ -2,6 +2,7 @@
 #include<vector>
 using namespace std;
 
+// T(N)=O(logn)
 class Solution {
 public:
     int solve(vector<int>&arr)
