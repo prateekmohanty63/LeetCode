@@ -23,6 +23,7 @@ using namespace std;
       TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
   };
  
+
 class Solution {
 public:
     ListNode* findMid(ListNode* head)
@@ -53,7 +54,7 @@ public:
         return res;
     }
 
-    TreeNode* buildTree(ListNode* head)
+    TreeNode* buildTree(ListNode* head)   // O(N)
     {
         // base case
         if(head==NULL )return NULL;
