@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    map<pair<string,string>,bool>mp;
+    map<pair<string,string>,int>mp;
 
     int n=4;
     int m=4;
@@ -16,7 +16,7 @@ int main()
 
     for(int i=0;i<m;i++)
     {
-        mp[{artist[i][0],artist[i][1]}]=true;
+        mp[{artist[i][0],artist[i][1]}]++;
     }
 
     int count=0;
@@ -28,9 +28,9 @@ int main()
         pr.second=it[1];
         if(mp.find(pr)!=mp.end())
         {
-            if(mp[pr]==true){
+            if(mp[pr]>0){
                 count++;
-                mp[pr]=false;
+                mp[pr]--;
             }
         }
     }
