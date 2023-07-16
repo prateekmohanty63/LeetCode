@@ -4,6 +4,88 @@
 #include<cmath>
 using namespace std;
 
+// T(N)=O(n*2^16*16) == O(n*2^16)
+// S(N)=O(n*2^16)
+
+class Solution {
+public:
+vector<int>res;
+
+void solve(int index,vector<vector<int>>&people_skill,int &reqMask,int mask,vector<int>&ans,vector<vector<int>>&dp)
+{
+    // base case
+    if(index==people_skill.size())
+    {
+       // check if all the skills are included
+       if(mask==reqMask)
+       {
+           if(res.size()==0 || (ans.size()<res.size()))res=ans;
+       }
+       return ;
+    }
+
+    if(dp[index][mask]!=-1)
+    {
+        if(dp[index][mask]<=ans.size())return ;
+    }
+    
+    // dont pick the person
+    solve(index+1,people_skill,reqMask,mask,ans,dp);
+
+    // pick the person
+    ans.push_back(index);
+    int newMask=mask;
+    for(auto it:people_skill[index])newMask|=(1<<it);
+
+    solve(index+1,people_skill,reqMask,newMask,ans,dp);
+
+    // undo the change in Pick
+    ans.pop_back();
+     
+     // if answer found update DP
+    if(ans.size()>0)dp[index][mask]=ans.size();
+
+}
+    vector<int> smallestSufficientTeam(vector<string>& req_skills, vector<vector<string>>& people) {
+         unordered_map<string,int>skillMap;
+        vector<vector<int>>pep;
+   
+        int n=req_skills.size();
+        int m=people.size();
+
+        for(int i=0;i<n;i++)
+        {
+            skillMap[req_skills[i]]=i;
+        }
+
+        for(int i=0;i<people.size();i++)
+        {
+            vector<int>vec;
+            for(int j=0;j<people[i].size();j++)
+            {
+                int num=skillMap[people[i][j]];
+               // cout<<num<<" ";
+                vec.push_back(num);
+            }
+            pep.push_back(vec);
+        }
+
+        int mask=0;
+        
+        // required bit mask
+        for(auto it:req_skills)
+        {
+            int num=skillMap[it];
+            mask|=(1<<num);
+        }
+       vector<int>ans;
+       vector<vector<int>>dp(m+1,vector<int>((1<<16)+1,-1));
+        solve(0,pep,mask,0,ans,dp);
+
+        return res;
+    }
+};
+
 
 class Solution {
 public:
