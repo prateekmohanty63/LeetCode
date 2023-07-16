@@ -4,6 +4,62 @@
 using namespace std;
 
 
+class Solution{
+public:
+    bool isPalindrome(string str)
+    {
+        int i=0;
+        int j=str.size()-1;
+        while(i<=j)
+        {
+            if(str[i]!=str[j])return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+   
+    int solve(string str,int i,vector<int>&dp)
+    {
+        // base case
+        // if string is of size 0 or 1 , we dont need to do any partitions
+        int n=str.length();
+        if(i>=n)return 0;
+        if(dp[i]!=-1)return dp[i];
+        
+        
+        
+        int ans=INT_MAX;
+        
+         string s;
+        for(int k=i;k<n;k++)
+        {
+          
+           s+=str[k];
+           
+           if(isPalindrome(s)){
+               int cost=0;
+               cost=1+solve(str,k+1,dp);
+               ans=min(ans,cost);
+           }
+           
+        }
+        return dp[i]=ans;
+    }
+    int palindromicPartition(string str)
+    {
+        // code here
+        int n=str.length();
+        vector<int>dp(n+1,-1);
+        
+        int res=solve(str,0,dp);
+        
+        return res-1;
+        
+        
+    }
+};
+
 // optimized memoization
 
 class Solution{
