@@ -32,12 +32,12 @@ public:
         int ans=INT_MAX;
         
          string s;
-        for(int k=i;k<n;k++)
+        for(int k=i;k<n;k++)   // O(n)
         {
           
            s+=str[k];
            
-           if(isPalindrome(s)){
+           if(isPalindrome(s)){    // O(n)
                int cost=0;
                cost=1+solve(str,k+1,dp);
                ans=min(ans,cost);
