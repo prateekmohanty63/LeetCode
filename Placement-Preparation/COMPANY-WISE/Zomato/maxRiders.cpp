@@ -88,16 +88,6 @@ int main()
 
     cout<<endl;
 
-      for(int i=0;i<mat.size();i++)
-    {
-        for(int j=0;j<mat.size();j++)
-        {
-            cout<<mat[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-   
-
    for(int i=0;i<n;i++)
    {
     for(int j=0;j<n;j++)
