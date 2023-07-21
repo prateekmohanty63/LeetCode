@@ -96,6 +96,8 @@ Node *swapNode(Node* head,int data1,int data2)
     Node* prev2=head;
     Node* next2=head->next;
 
+  
+
     int k=0;
 
     while(ptr1!=NULL && ptr1->data!=data1)
@@ -124,6 +126,15 @@ Node *swapNode(Node* head,int data1,int data2)
         k=1;
     }
 
+    if(ptr1->next==ptr2)
+    {
+        prev1->next=ptr2;
+        ptr1->next=next2;
+        ptr2->next=ptr1;
+
+        return res;
+    }
+
     cout<<prev1->data<<" "<<ptr1->data<<" "<<next1->data;
     cout<<endl;
 
@@ -144,18 +155,19 @@ Node *swapNode(Node* head,int data1,int data2)
 
 int main()
 {
-    addNodeEnd(10);
-    addNodeEnd(15);
-    addNodeEnd(12);
-    addNodeEnd(13);
-    addNodeEnd(20);
-    addNodeEnd(14);
+    addNodeEnd(1);
+    addNodeEnd(2);
+    addNodeEnd(3);
+    addNodeEnd(4);
+    addNodeEnd(5);
+   
+   
    
 
     printList(head);
     cout<<endl;
 
-     Node* res=swapNode(head,12,20);
+     Node* res=swapNode(head,2,3);
     cout<<endl;
     // cout<<res->data;
 
