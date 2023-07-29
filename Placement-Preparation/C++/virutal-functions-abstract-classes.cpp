@@ -1,0 +1,81 @@
+#include<iostream>
+using namespace std;
+
+// virtual functions 
+
+class MyBase {
+    public:
+    void show()
+    {
+        cout<<"Base class show function called"<<endl;
+    }
+    virtual void print()
+    {
+        cout<<"Base class Print function called"<<endl;
+    }
+};
+
+class MyDerived : public MyBase 
+{   
+     public:
+    void show()
+    {
+        cout<<"Derived class show function called"<<endl;
+    }
+     void print()
+    {
+        cout<<"Derived class Print function called"<<endl;
+    } 
+};
+
+
+// pure virtual function 
+
+// abstract class 
+class Shape{
+    public:
+    virtual void getArea()=0;  // pure virtual function 
+};
+
+class Circle: public Shape{
+    public: 
+    void getArea()
+    {
+        int r=10;
+        cout<<"Area of circle: "<<3.14*r*r<<endl;
+
+    }
+};
+
+class Rectangle: public Shape{
+    public: 
+    void getArea()
+    {
+        int l=10;
+        int b=5;
+        cout<<"Area of rectangle: "<<l*b<<endl;
+
+    }
+};
+
+
+
+
+int main()
+{
+    MyBase *baseptr;
+    MyDerived derivedObj;
+
+    baseptr=&derivedObj;
+
+    baseptr->print();   // dderived class base function was called
+    baseptr->show();    // while show is not a virtual function hence the show function of base class is  called
+    
+    Circle *obj=new Circle();
+    obj->getArea();
+
+    Rectangle *obj1=new Rectangle();
+    obj1->getArea();
+
+    return 0;
+}
