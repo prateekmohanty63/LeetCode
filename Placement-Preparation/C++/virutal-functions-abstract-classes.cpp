@@ -59,23 +59,53 @@ class Rectangle: public Shape{
 };
 
 
+// implementation of function over-riding 
+
+class Base{
+
+    public:
+    
+     void greet()
+     {
+        cout<<"Hello from base class";
+     }
+};
+
+class Derived: public Base 
+{
+    public:
+      void greet()
+      {
+        cout<<"Hello from derived class";
+      }
+};
+
 
 
 int main()
 {
-    MyBase *baseptr;
-    MyDerived derivedObj;
+// {
+//     MyBase *baseptr;
+//     MyDerived derivedObj;
 
-    baseptr=&derivedObj;
+//     baseptr=&derivedObj;
 
-    baseptr->print();   // dderived class base function was called
-    baseptr->show();    // while show is not a virtual function hence the show function of base class is  called
+   //  baseptr->print();   // derived class base function was called
+   //  baseptr->show();    // while show is not a virtual function hence the show function of base class is  called
     
-    Circle *obj=new Circle();
-    obj->getArea();
+    // Circle *obj=new Circle();
+    // obj->getArea();
 
-    Rectangle *obj1=new Rectangle();
-    obj1->getArea();
+    // Rectangle *obj1=new Rectangle();
+   //  obj1->getArea();
+   
+   Derived objDerived;
+   Base *a=&objDerived;
+   a->greet();
+   
+   cout<<endl;
 
+   Base *b=new Derived;
+   b->greet();
     return 0;
 }
