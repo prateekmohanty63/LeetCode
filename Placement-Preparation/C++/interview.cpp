@@ -583,6 +583,50 @@ void exceptionHandling()
     }
 }
 
+
+// exception handling in cpp 
+
+class class1
+{
+    void func(){
+    int numerator;
+    int denominator;
+    try{
+         if(denominator==0)throw runtime_error("Division by zero");
+    }
+    catch(exception e)
+    {
+        cout<<e.what();
+    }
+}
+};
+
+// custom exception 
+
+// class MyCustomException: public exception{
+//     public:
+
+//     char* what(char* msg){
+//         return msg;
+//     }
+// };
+
+int func()
+{
+    try{
+        int a=0;
+        if(a==0)
+        throw "Please enter valid input";
+    }
+    catch(string a)
+    {
+        cout<<a;
+    }
+    catch(...){
+        cout<<"Any exception";
+    }
+}
+
 int staticExample::count=0;
 
 

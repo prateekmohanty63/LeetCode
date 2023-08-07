@@ -67,6 +67,7 @@ class Vector {
 
         else capacity=2*capacity;
 
+        // memory assigned in heap 
         int *newArray=new int[capacity];
 
         for(int i=0;i<size;i++)
