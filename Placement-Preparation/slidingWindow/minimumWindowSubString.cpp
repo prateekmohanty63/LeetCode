@@ -4,6 +4,81 @@
 
 using namespace std;
 
+
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+class Solution
+{
+    public:
+    //Function to find the smallest window in the string s consisting
+    //of all the characters of string p.
+    bool isSame(unordered_map<char,int>&orgMap,unordered_map<char,int>&currMp)
+    {
+        for(auto it:orgMap)
+        {
+             if(currMp[it.first]<it.second)return false;
+        }
+        return true;
+    }
+    string smallestWindow (string s, string p)
+    {
+        // Your code here
+        
+        int n=s.length();
+        int m=p.length();
+        if(n<m)return "-1";
+        if(n==m && s!=p)return "-1";
+        else if(n==m && s==p)return p;
+        
+        int res=INT_MAX;
+        string strRes;
+        int startInd;
+        
+        vector<int>orgFreq(26,0);
+        
+        for(auto it:p)
+        {
+            orgFreq[it-'a']++;
+        }
+        
+        int r=0;
+        
+        int start=0;
+        int end=0;
+        
+        while(end<n)
+        {
+            // check how many elements remains to be taken of the given char
+            if(--orgFreq[s[end++]-'a']>=0)r++;
+            
+            while(r==m)
+            {
+                if(end-start<res)
+                {
+                    res=end-start;
+                    startInd=start;
+                }
+                // now increase the count of element to be taken , because we are removing s[start] from window
+                if(++orgFreq[s[start++]-'a']>0)r--;
+            }
+          
+        }
+        
+        
+        
+        if(res==INT_MAX)return "-1";
+        strRes=s.substr(startInd,res);
+        
+        return strRes;
+    }
+};
+
+// } Driver Code Ends
+
 class Solution {
 public:
     
