@@ -6,6 +6,67 @@ using namespace std;
 
 class Solution {
 public:
+    vector<int> findSubstring(string S, vector<string>& words) {
+        
+        int n=S.length();
+        int l=words.size();
+        int m=words[0].size();
+
+        vector<int>ind;
+
+      //  if(n<l*m)return ind;
+        if(l==0 || n==0)return ind;
+         unordered_map<string,int>wordCount;
+         vector<int>res;
+
+         for(auto word:words)
+         wordCount[word]++;
+         
+
+         int start=0;
+         int end=words.size()*m-1;
+         
+         while(end<n)
+         {
+             unordered_map<string,int>tempMap;
+             int s=start;
+             int e=s+(m-1);
+             int flag=0;
+
+             while(e<=end)
+             {
+                 string substr=S.substr(s,e-s+1);
+                
+                 if(wordCount.find(substr)!=wordCount.end()){
+                     int freq=wordCount[substr];
+                     int currFreq=tempMap[substr];
+                     if(currFreq>=freq)
+                     {
+                         flag=1;
+                         break;
+                     }
+                     else{
+                         tempMap[substr]++;
+                     }
+                 }
+                 else break;
+                 s=e+1;
+                 e+=m;
+             }
+             if(flag==0)res.push_back(start);
+
+             start++;
+             end++;
+
+         }
+         return res;
+    }
+};
+
+// TLE 
+
+class Solution {
+public:
     vector<int>res;
     unordered_map<string,bool>mp;
     vector<int> findIndices(string s,string target)
