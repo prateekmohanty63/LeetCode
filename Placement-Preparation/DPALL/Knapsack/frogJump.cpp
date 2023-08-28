@@ -3,6 +3,65 @@
 #include<unordered_map>
 using namespace std;
 
+// Time complexity: 48ms Beats 94.95%of users with C++
+// Space complexity: 235.19MB Beats 16.16%of users with C++
+class Solution {
+public:
+    bool solve(vector<int>&stones,int ind,int prevJump,unordered_map<int,int>&stonePos,vector<vector<int>>&dp)
+    {
+        int n=stones.size();
+
+        if(ind==n-1)return true;
+
+        if(ind>=n)return false;
+
+        if(dp[ind][prevJump]!=-1)return dp[ind][prevJump];
+
+        bool ans=false;
+        int nextPos=stones[ind]+prevJump;
+        if(stonePos.find(nextPos)!=stonePos.end())
+        {
+            int i=stonePos[nextPos];
+            ans=(ans || solve(stones,i,prevJump,stonePos,dp));
+        }
+
+        nextPos=stones[ind]+prevJump-1;
+
+        if(stonePos.find(nextPos)!=stonePos.end() && nextPos>stones[ind])
+        {
+            int i=stonePos[nextPos];
+            ans=(ans || (solve(stones,i,prevJump-1,stonePos,dp)));
+        }
+
+        nextPos=stones[ind]+prevJump+1;
+
+        if(stonePos.find(nextPos)!=stonePos.end())
+        {
+            int i=stonePos[nextPos];
+            ans=(ans || solve(stones,i,prevJump+1,stonePos,dp));
+        }
+
+        return dp[ind][prevJump]=ans;
+    }
+    bool canCross(vector<int>& stones) {
+        
+        unordered_map<int,int>stonePos;
+        int n=stones.size();
+
+        vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
+
+        for(int i=0;i<n;i++)
+        stonePos[stones[i]]=i;
+        
+       // for(auto it:stonePos)cout<<it.first<<" "<<it.second<<endl;
+
+       if(stonePos.find(1)==stonePos.end())return false;
+
+        return solve(stones,1,1,stonePos,dp);
+
+    }
+};
+
 
 // TLE
 
