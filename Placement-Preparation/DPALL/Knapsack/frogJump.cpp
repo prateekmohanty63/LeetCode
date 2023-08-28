@@ -3,6 +3,62 @@
 #include<unordered_map>
 using namespace std;
 
+
+// TLE
+
+class Solution {
+public:
+    bool solve(vector<int>&stones,int ind,int prevJump,unordered_map<int,int>&stonePos)
+    {
+        int n=stones.size();
+
+        if(ind==n-1)return true;
+
+        if(ind>=n)return false;
+
+        bool ans=false;
+        int nextPos=stones[ind]+prevJump;
+        if(stonePos.find(nextPos)!=stonePos.end())
+        {
+            int i=stonePos[nextPos];
+            ans=(ans || solve(stones,i,prevJump,stonePos));
+        }
+
+        nextPos=stones[ind]+prevJump-1;
+
+        if(stonePos.find(nextPos)!=stonePos.end() && nextPos>stones[ind])
+        {
+            int i=stonePos[nextPos];
+            ans=(ans || (solve(stones,i,prevJump-1,stonePos)));
+        }
+
+        nextPos=stones[ind]+prevJump+1;
+
+        if(stonePos.find(nextPos)!=stonePos.end())
+        {
+            int i=stonePos[nextPos];
+            ans=(ans || solve(stones,i,prevJump+1,stonePos));
+        }
+
+        return ans;
+    }
+    bool canCross(vector<int>& stones) {
+        
+        unordered_map<int,int>stonePos;
+        int n=stones.size();
+
+        for(int i=0;i<n;i++)
+        stonePos[stones[i]]=i;
+        
+       // for(auto it:stonePos)cout<<it.first<<" "<<it.second<<endl;
+
+       if(stonePos.find(1)==stonePos.end())return false;
+
+        return solve(stones,1,1,stonePos);
+
+    }
+};
+
 // Memory limit exceeded
 
 class Solution {
